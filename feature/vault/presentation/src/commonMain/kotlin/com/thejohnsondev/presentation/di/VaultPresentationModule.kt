@@ -1,5 +1,11 @@
 package com.thejohnsondev.presentation.di
 
-import org.koin.core.module.Module
+import com.thejohnsondev.presentation.additem.AddVaultItemViewModel
+import com.thejohnsondev.presentation.vault.VaultViewModel
+import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.module
 
-expect val vaultPresentationModule: Module
+val vaultPresentationModule = module {
+    viewModelOf(::VaultViewModel)
+    viewModelOf(::AddVaultItemViewModel)
+}
