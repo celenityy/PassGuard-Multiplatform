@@ -263,6 +263,7 @@
     <string name="contact_email_description">Contact the developer at: </string>
     <string name="license_info">License info</string>
     <string name="license_info_description">Licence information about the libraries used in the app</string>
+    <string name="logos_provided">Logos provided by:</string>
 
     <!--Onboarding-->
     <string name="onboarding_security_title">Your Data is Always Safe</string>

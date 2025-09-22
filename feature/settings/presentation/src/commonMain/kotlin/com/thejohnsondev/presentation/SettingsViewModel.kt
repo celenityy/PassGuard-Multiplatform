@@ -8,6 +8,7 @@ import com.thejohnsondev.domain.CopyTextUseCase
 import com.thejohnsondev.domain.repo.AuthService
 import com.thejohnsondev.domain.GetBiometricAvailabilityUseCase
 import com.thejohnsondev.domain.GetContactInfoUseCase
+import com.thejohnsondev.domain.GetLicenseInfoUseCase
 import com.thejohnsondev.domain.GetSettingsFlowUseCase
 import com.thejohnsondev.domain.GetUserEmailUseCase
 import com.thejohnsondev.domain.GetVersionInfoUseCase
@@ -16,6 +17,7 @@ import com.thejohnsondev.domain.IsDynamicThemeAvailableUseCase
 import com.thejohnsondev.domain.PasswordValidationUseCase
 import com.thejohnsondev.domain.UpdateSettingsUseCase
 import com.thejohnsondev.domain.model.ContactInfo
+import com.thejohnsondev.domain.model.LicenseInfo
 import com.thejohnsondev.domain.model.VersionInfo
 import com.thejohnsondev.localization.Language
 import com.thejohnsondev.localization.LocalizationUtils
@@ -51,6 +53,7 @@ class SettingsViewModel(
     private val localizationUtils: LocalizationUtils,
     private val getVersionInfoUseCase: GetVersionInfoUseCase,
     private val getContactInfoUseCase: GetContactInfoUseCase,
+    private val getLicenseInfoUseCase: GetLicenseInfoUseCase,
     private val copyTextUseCase: CopyTextUseCase,
 ) : BaseViewModel() {
 
@@ -126,6 +129,7 @@ class SettingsViewModel(
         val supportsBlockingScreenshots = isBlockingScreenshotAvailableUseCase()
         val versionInfo = getVersionInfoUseCase()
         val contactInfo = getContactInfoUseCase()
+        val licenseInfo = getLicenseInfoUseCase()
         getSettingsFlowUseCase.invoke().collect { config ->
             val selectedLanguage = localizationUtils.getSelectedLanguage()
             _state.update {
@@ -137,7 +141,8 @@ class SettingsViewModel(
                     isBlockingScreenshotsAvailable = supportsBlockingScreenshots,
                     selectedLanguage = selectedLanguage,
                     versionInfo = versionInfo,
-                    contactInfo = contactInfo
+                    contactInfo = contactInfo,
+                    licenseInfo = licenseInfo
                 )
             }
         }
@@ -372,7 +377,8 @@ class SettingsViewModel(
         val isLicenseInfoOpened: Boolean = false,
         val isContactInfoOpened: Boolean = false,
         val versionInfo: VersionInfo? = null,
-        val contactInfo: ContactInfo? = null
+        val contactInfo: ContactInfo? = null,
+        val licenseInfo: LicenseInfo? = null,
     )
 
 }

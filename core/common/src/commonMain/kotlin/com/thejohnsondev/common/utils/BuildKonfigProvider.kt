@@ -12,4 +12,6 @@ object BuildKonfigProvider {
     fun getLastAppUpdate(): String = BuildKonfig.LAST_COMMIT_TIME
     fun getLastCommitHash(): String = BuildKonfig.LAST_COMMIT_HASH
     fun getContactEmail(): String = BuildKonfig.CONTACT_EMAIL
+    fun getLogoProviderName(): String = BuildKonfig.LOGO_PROVIDER_NAME
+    fun getLogoProviderUrl(): String = BuildKonfig.LOGO_PROVIDER_URL
 }

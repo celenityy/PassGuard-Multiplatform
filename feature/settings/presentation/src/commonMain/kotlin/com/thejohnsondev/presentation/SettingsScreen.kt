@@ -3,6 +3,7 @@ package com.thejohnsondev.presentation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -130,6 +131,7 @@ import vaultmultiplatform.core.ui.generated.resources.last_update_hash_placehold
 import vaultmultiplatform.core.ui.generated.resources.last_update_placeholder
 import vaultmultiplatform.core.ui.generated.resources.license_info
 import vaultmultiplatform.core.ui.generated.resources.license_info_description
+import vaultmultiplatform.core.ui.generated.resources.logos_provided
 import vaultmultiplatform.core.ui.generated.resources.logout
 import vaultmultiplatform.core.ui.generated.resources.logout_confirm_message
 import vaultmultiplatform.core.ui.generated.resources.manage_account
@@ -254,6 +256,9 @@ fun SettingsContent(
                 state = state,
                 paddingValues = paddingValues,
                 onAction = onAction, goToSignUp = goToSignUp
+                onAction = onAction, goToSignUp = goToSignUp,
+                openUrl = {
+                }
             )
         }
     }
@@ -265,6 +270,7 @@ fun SettingsList(
     onAction: (SettingsViewModel.Action) -> Unit,
     goToSignUp: () -> Unit,
     paddingValues: PaddingValues,
+    openUrl: (String) -> Unit
 ) {
     val colors = ToolSelectableItemColors()
     Column(
@@ -295,7 +301,8 @@ fun SettingsList(
                     subSectionIndex = index,
                     onAction = onAction,
                     goToSignUp = goToSignUp,
-                    colors = colors
+                    colors = colors,
+                    openUrl = openUrl
                 )
             }
         }
@@ -329,6 +336,7 @@ fun SettingsSubSections(
     onAction: (SettingsViewModel.Action) -> Unit,
     goToSignUp: () -> Unit,
     colors: SelectableItemColors,
+    openUrl: (String) -> Unit
 ) {
     val subsectionDescription =
         if (subSection.sectionTitleRes == ResString.manage_account) {
@@ -391,7 +399,7 @@ fun SettingsSubSections(
             }
 
             SettingsSubSection.AboutSettingsSub -> {
-                AboutSettingsSubSection(state = state, onAction = onAction)
+                AboutSettingsSubSection(state = state, onAction = onAction, openUrl = openUrl)
             }
         }
     }
@@ -819,6 +827,7 @@ fun PrivacySettingsSubSection(
 fun AboutSettingsSubSection(
     state: SettingsViewModel.State,
     onAction: (SettingsViewModel.Action) -> Unit,
+    openUrl: (String) -> Unit
 ) {
     Column(
         modifier = Modifier.padding(start = Size16, end = Size16, bottom = Size16)
@@ -854,64 +863,11 @@ fun AboutSettingsSubSection(
             description = stringResource(ResString.license_info_description),
             icon = Icons.Default.Copyright,
             isLastItem = true
-        )
-    }
-}
-
-@Composable
-private fun ContactInfoSubsection(
-    state: SettingsViewModel.State,
-    onAction: (SettingsViewModel.Action) -> Unit
-) {
-    val email = state.contactInfo?.developerEmail.orEmpty()
-
-    RoundedContainer(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(Size16),
-        color = MaterialTheme.colorScheme.surfaceContainerHigh
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(Size16)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(
-                Modifier.weight(Percent100),
-                horizontalAlignment = Alignment.Start,
-            ) {
-                Text(
-                    text = stringResource(ResString.contact_email_description),
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Thin,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-                RoundedContainer(
-                    modifier = Modifier
-                        .padding(top = Size8),
-                    color = MaterialTheme.colorScheme.onSurface,
-                    shape = EquallyRounded.small
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .padding(vertical = Size4, horizontal = Size8),
-                        text = email,
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.surface
-                    )
-                }
-            }
-            IconButton(
-                onClick = {
-                    onAction(SettingsViewModel.Action.CopyToClipboard(email))
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ContentCopy,
-                    contentDescription = "Copy Email"
-                )
-            }
+            LicenseInfoSubsection(
+                state = state,
+                openUrl = openUrl
+            )
         }
     }
 }
@@ -972,6 +928,109 @@ private fun VersionInfoSubSection(
                         )
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ContactInfoSubsection(
+    state: SettingsViewModel.State,
+    onAction: (SettingsViewModel.Action) -> Unit
+) {
+    val email = state.contactInfo?.developerEmail.orEmpty()
+
+    RoundedContainer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = Size8, bottom = Size8),
+        color = MaterialTheme.colorScheme.surfaceContainerHigh
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(Size16)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                Modifier.weight(Percent100),
+                horizontalAlignment = Alignment.Start,
+            ) {
+                Text(
+                    text = stringResource(ResString.contact_email_description),
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Thin,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                RoundedContainer(
+                    modifier = Modifier
+                        .padding(top = Size8),
+                    color = MaterialTheme.colorScheme.onSurface,
+                    shape = EquallyRounded.small
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .padding(vertical = Size4, horizontal = Size8),
+                        text = email,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.surface
+                    )
+                }
+            }
+            IconButton(
+                onClick = {
+                    onAction(SettingsViewModel.Action.CopyToClipboard(email))
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ContentCopy,
+                    contentDescription = "Copy Email"
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun LicenseInfoSubsection(
+    state: SettingsViewModel.State,
+    openUrl: (String) -> Unit
+) {
+    RoundedContainer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = Size8, bottom = Size8),
+        color = MaterialTheme.colorScheme.surfaceContainerHigh
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(Size16)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = stringResource(ResString.logos_provided),
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Thin,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            val url = state.licenseInfo?.logoProviderUrl.orEmpty()
+            RoundedContainer(
+                modifier = Modifier
+                    .padding(start = Size8)
+                    .clickable {
+                        openUrl(url)
+                    },
+                color = MaterialTheme.colorScheme.onSurface,
+                shape = EquallyRounded.small
+            ) {
+                Text(
+                    modifier = Modifier
+                        .padding(vertical = Size4, horizontal = Size8),
+                    text = state.licenseInfo?.logoProviderName.orEmpty(),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.surface
+                )
             }
         }
     }
