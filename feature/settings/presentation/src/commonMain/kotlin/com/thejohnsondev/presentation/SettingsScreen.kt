@@ -42,6 +42,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -166,6 +167,7 @@ fun SettingsScreen(
     onShowMessage: (MessageContent) -> Unit,
 ) {
     val state = viewModel.state.collectAsState(SettingsViewModel.State())
+    val uriHandler = LocalUriHandler.current
 
     LaunchedEffect(Unit) {
         Analytics.trackScreen("Settings Screen")
@@ -216,7 +218,10 @@ fun SettingsScreen(
         windowSizeClass = windowSizeClass,
         paddingValues = paddingValues,
         onAction = viewModel::perform,
-        goToSignUp = onGoToSignUp
+        goToSignUp = onGoToSignUp,
+        openUrl = {
+            uriHandler.openUri(it)
+        }
     )
     Dialogs(
         windowSizeClass = windowSizeClass,
@@ -233,6 +238,7 @@ fun SettingsContent(
     paddingValues: PaddingValues,
     onAction: (SettingsViewModel.Action) -> Unit,
     goToSignUp: () -> Unit,
+    openUrl: (String) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -255,10 +261,8 @@ fun SettingsContent(
             SettingsList(
                 state = state,
                 paddingValues = paddingValues,
-                onAction = onAction, goToSignUp = goToSignUp
                 onAction = onAction, goToSignUp = goToSignUp,
-                openUrl = {
-                }
+                openUrl = openUrl
             )
         }
     }
