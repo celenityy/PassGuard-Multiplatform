@@ -295,8 +295,6 @@ fun SettingsList(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         .padding(
-                            start = Size16,
-                            end = Size16,
                             bottom = Size4
                         ),
                     state = state,
@@ -348,8 +346,23 @@ fun SettingsSubSections(
         } else {
             subSection.sectionDescriptionRes?.let { stringResource(resource = it) }
         }
+    var isSectionExpanded by remember {
+        mutableStateOf(false)
+    }
+    val transitionState = remember {
+        MutableTransitionState(isSectionExpanded).apply {
+            targetState = !isSectionExpanded
+        }
+    }
+    val transition = rememberTransition(transitionState, label = "")
+    val cardPaddingHorizontal by transition.animateDp({
+        tween(durationMillis = EXPAND_ANIM_DURATION)
+    }, label = "") {
+        if (isSectionExpanded) Size8 else Size16
+    }
     ExpandableSectionItem(
-        modifier = modifier,
+        modifier = modifier
+            .padding(horizontal = cardPaddingHorizontal),
         title = stringResource(resource = subSection.sectionTitleRes),
         description = subsectionDescription,
         icon = subSection.sectionIcon.getImageVector(),
@@ -362,6 +375,7 @@ fun SettingsSubSections(
                     "is_expanded" to it
                 )
             )
+            isSectionExpanded = it
         },
         colors = colors
     ) {
