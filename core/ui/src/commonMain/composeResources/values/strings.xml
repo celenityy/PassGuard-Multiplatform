@@ -251,6 +251,7 @@
     <string name="language_lithuanian">Lithuanian</string>
     <string name="language_estonian">Estonian</string>
     <string name="language_maltese">Maltese</string>
+
     <string name="about_title">About</string>
     <string name="about_description">App version, licenses, and more</string>
     <string name="version_info">Version info</string>
