@@ -20,16 +20,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.LibraryBooks
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Commit
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Copyright
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.LibraryAdd
+import androidx.compose.material.icons.filled.LibraryBooks
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Support
 import androidx.compose.material3.ButtonDefaults
@@ -37,6 +41,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -1173,30 +1178,51 @@ fun LicenseInfoRow(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(
-                modifier = Modifier
-                    .padding(Size8),
-                horizontalAlignment = Alignment.Start
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
             ) {
-                RoundedContainer(
-                    color = MaterialTheme.colorScheme.onSurface,
-                    shape = EquallyRounded.small
+                Surface(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .padding(Size16)
+                        .clip(EquallyRounded.small),
+                    color = MaterialTheme.colorScheme.onSurface
                 ) {
-                    Text(
+                    Icon(
                         modifier = Modifier
-                            .padding(Size4),
-                        text = name,
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.surface
+                            .padding(Size8)
+                            .size(Size24),
+                        imageVector = Icons.AutoMirrored.Default.LibraryBooks,
+                        contentDescription = "Ligrary icon",
+                        tint = MaterialTheme.colorScheme.surfaceContainer
                     )
                 }
-                Text(
-                    modifier = Modifier.padding(top = Size4),
-                    text = description,
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Normal,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+                Column(
+                    modifier = Modifier
+                        .padding(vertical = Size12),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    RoundedContainer(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        shape = EquallyRounded.small
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .padding(Size4),
+                            text = name,
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.surface
+                        )
+                    }
+                    Text(
+
+                        text = description,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Normal,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
             Icon(
                 modifier = Modifier
