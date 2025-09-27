@@ -62,6 +62,7 @@ import com.thejohnsondev.ui.designsystem.Size4
 import com.thejohnsondev.ui.designsystem.Size48
 import com.thejohnsondev.ui.designsystem.Size8
 import com.thejohnsondev.ui.designsystem.StartRounded
+import com.thejohnsondev.ui.displaymessage.getAsComposeText
 import com.thejohnsondev.ui.utils.ResString
 import com.thejohnsondev.ui.utils.asPasswordFormatted
 import com.thejohnsondev.ui.utils.padding
@@ -204,7 +205,7 @@ private fun MainPasswordView(state: PasswordGeneratorViewModel.State) {
                 .padding(end = Size8)
                 .weight(Percent100),
             text = buildAnnotatedString {
-                append(state.passwordGeneratedResult?.suggestion.orEmpty())
+                append(state.passwordGeneratedResult?.suggestion?.getAsComposeText())
             },
             textAlign = TextAlign.Start,
             style = MaterialTheme.typography.bodySmall,

@@ -7,6 +7,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.thejohnsondev.model.DisplayableMessageValue
 import com.thejohnsondev.model.tools.PasswordGeneratedResult
 import com.thejohnsondev.presentation.passwordgenerator.PasswordGeneratorViewModel
 import com.thejohnsondev.presentation.passwordgenerator.PasswordGeneratorWidgetContent
@@ -29,7 +30,7 @@ fun PasswordGeneratorWidgetGeneratedPreview() {
                     passwordGeneratedResult = PasswordGeneratedResult(
                         password = "Qbegfdjl3lk49@#",
                         strengthLevel = 0.6f,
-                        suggestion = "Make a stronger password",
+                        suggestion = DisplayableMessageValue.StrengthWeak,
                     )
                 ),
                 onAction = {},
@@ -56,7 +57,7 @@ fun PasswordGeneratorWidgetGeneratedLongPreview() {
                     passwordGeneratedResult = PasswordGeneratedResult(
                         password = "Qbegfdjl3lk49@#fdsjjhfsdhfdsjfsd",
                         strengthLevel = 0.3f,
-                        suggestion = "Make a stronger password, Make a stronger password, Make a stronger password",
+                        suggestion = DisplayableMessageValue.StrengthWeak,
                     )
                 ),
                 onAction = {},

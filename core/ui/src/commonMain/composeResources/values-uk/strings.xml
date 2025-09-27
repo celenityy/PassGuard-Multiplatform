@@ -37,10 +37,10 @@
     <string name="already_have_an_account">Вже маєте обліковий запис?</string>
     <string name="accept_and_agree">Я приймаю та погоджуюсь з </string>
     <string name="terms_of_use"> Умовами використання</string>
-    <string name="terms_of_use_link">https://andrewdobosh.notion.site/Terms-of-use-bb7607b71dbc40d9a336c9ed38d5a7e8</string>
+    <string name="terms_of_use_link">https://doboshdev.notion.site/Terms-of-use-bb7607b71dbc40d9a336c9ed38d5a7e8?pvs=74</string>
     <string name="privacy_policy">Політикою конфіденційності.</string>
     <string name="and"> та </string>
-    <string name="privacy_policy_link">https://andrewdobosh.notion.site/Privacy-Policy-3f95b4857e0e49a78b35f0ca837b4ec5</string>
+    <string name="privacy_policy_link">https://doboshdev.notion.site/Privacy-Policy-3f95b4857e0e49a78b35f0ca837b4ec5?pvs=74</string>
 
     <string name="vault">Сховище</string>
     <string name="delete_password">Видалити пароль</string>
@@ -237,6 +237,51 @@
     <string name="language_estonian">Естонська</string>
     <string name="language_maltese">Мальтійська</string>
 
+    <string name="about_title">Про застосунок</string>
+    <string name="about_description">Версія застосунку, ліцензії та інше</string>
+    <string name="version_info">Інформація про версію</string>
+    <string name="version_info_description">Інформація про версію застосунку</string>
+    <string name="version_name_placeholder">Версія %1$s</string>
+    <string name="last_update_placeholder">Останнє оновлення %1$s</string>
+    <string name="last_update_hash_placeholder">Хеш останнього оновлення: %1$s</string>
+    <string name="contact_info">Зв’язатися з розробником</string>
+    <string name="contact_info_description">Контактна інформація та підтримка</string>
+    <string name="contact_email_description">Зв’язатися з розробником за адресою: </string>
+    <string name="license_info">Інформація про бібліотеки</string>
+    <string name="license_info_description">Інформація про використані бібліотеки</string>
+    <string name="license_info_logos_provided">Постачальник логотипів</string>
+    <string name="license_info_haze">Haze</string>
+    <string name="license_info_haze_description">Ефект розмиття фону</string>
+    <string name="license_info_haze_url">https://github.com/chrisbanes/haze</string>
+    <string name="license_info_koin">Koin</string>
+    <string name="license_info_koin_description">Фреймворк для впровадження залежностей</string>
+    <string name="license_info_koin_url">https://github.com/InsertKoinIO/koin</string>
+    <string name="license_info_posthog">Posthog</string>
+    <string name="license_info_posthog_description">Платформа для аналітики</string>
+    <string name="license_info_posthog_url">https://github.com/PostHog/posthog</string>
+    <string name="license_info_nappier">Nappier</string>
+    <string name="license_info_nappier_description">Бібліотека для логування</string>
+    <string name="license_info_nappier_url">https://github.com/AAkira/Napier</string>
+    <string name="license_info_arrow">Arrow</string>
+    <string name="license_info_arrow_description">Бібліотека для обробки помилок</string>
+    <string name="license_info_arrow_url">https://github.com/arrow-kt/arrow</string>
+    <string name="license_info_mockk">Mockk</string>
+    <string name="license_info_mockk_description">Бібліотека мокінгу для модульного тестування</string>
+    <string name="license_info_mockk_url">https://github.com/mockk/mockk</string>
+    <string name="license_info_sqldelight">SQLDelight</string>
+    <string name="license_info_sqldelight_description">Бібліотека ORM для баз даних</string>
+    <string name="license_info_sqldelight_url">https://github.com/sqldelight/sqldelight</string>
+    <string name="license_info_landscapist">Landscapist</string>
+    <string name="license_info_landscapist_description">Бібліотека для завантаження зображень</string>
+    <string name="license_info_landscapist_url">https://github.com/skydoves/landscapist</string>
+    <string name="license_info_konnection">Konnection</string>
+    <string name="license_info_konnection_description">Моніторинг мережевого з’єднання</string>
+    <string name="license_info_konnection_url">https://github.com/TM-Apps/konnection</string>
+    <string name="legal_info_title">Юридична інформація</string>
+    <string name="legal_info_description">Політика конфіденційності, Умови використання, Ліцензії відкритого коду</string>
+    <string name="legal_info_open_source_license">Ліцензія відкритого коду</string>
+    <string name="legal_info_open_source_license_link">https://github.com/thejohnsondev/PassGuard-Multiplatform?tab=CC0-1.0-1-ov-file#readme</string>
+
     <string name="onboarding_security_title">Ваші дані завжди в безпеці</string>
     <string name="onboarding_security_description">Ваше сховище захищене провідним у галузі шифруванням. Лише ви маєте ключі.</string>
     <string name="onboarding_offline_title">Сховище залишається на вашому пристрої</string>
@@ -244,5 +289,17 @@
     <string name="onboarding_export_title">Легко переміщуйте паролі</string>
     <string name="onboarding_export_description">Імпортуйте з Менеджера паролів Google або експортуйте своє сховище в будь-який час — ви завжди все контролюєте.</string>
     <string name="onboarding_create_vault">Створити сховище</string>
+
+    <string name="password_generator_top_10">Цей пароль входить до ТОП-10 найпоширеніших. Уникайте його за будь-яку ціну.</string>
+    <string name="password_generator_top_100">Цей пароль входить до ТОП-100 найпоширеніших. Він дуже небезпечний.</string>
+    <string name="password_generator_top_1000">Цей пароль входить до ТОП-1000 найпоширеніших. Його легко вгадати.</string>
+    <string name="password_generator_very_common">Цей пароль дуже поширений. Оберіть більш унікальний.</string>
+    <string name="password_generator_strength_extremely_weak">Надзвичайно слабкий! Використовуйте щонайменше 8 символів із різним регістром та символами.</string>
+    <string name="password_generator_strength_too_weak">Занадто слабкий. Додайте більше символів і змішайте великі літери, малі літери та цифри.</string>
+    <string name="password_generator_strength_weak">Слабкий. Розгляньте можливість додавання спеціальних символів і збільшення довжини.</string>
+    <string name="password_generator_strength_moderate">Помірний. Спробуйте використати довший пароль із символами.</string>
+    <string name="password_generator_strength_strong">Сильний. Переконайтеся, що це не поширена фраза.</string>
+    <string name="password_generator_strength_very_strong">Дуже сильний! Майже неможливо зламати, але уникайте використання особистої інформації.</string>
+    <string name="password_generator_strength_extremely_strong">Надзвичайно сильний! Цей пароль є високозахищеним.</string>
 
 </resources>
