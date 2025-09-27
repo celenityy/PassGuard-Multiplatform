@@ -42,14 +42,14 @@ class NetworkUtilsKtTest {
     fun `callWithMapping returns NetworkError on NoInternetConnectionException`() = runTest {
         val result = callWithMapping<String> { throw NoInternetConnectionException() }
 
-        assertTrue(result.isLeft() && result.swap().orNull() is NetworkError)
+        assertTrue(result.isLeft() && result.swap().getOrNull() is NetworkError)
     }
 
     @Test
     fun `callWithMapping returns UnknownError on unknown exception`() = runTest {
         val result = callWithMapping<String> { throw Exception("Unknown error") }
 
-        assertTrue(result.isLeft() && result.swap().orNull() is UnknownError)
+        assertTrue(result.isLeft() && result.swap().getOrNull() is UnknownError)
     }
 
 }

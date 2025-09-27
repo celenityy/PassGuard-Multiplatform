@@ -102,6 +102,7 @@ import com.thejohnsondev.ui.designsystem.Text20
 import com.thejohnsondev.ui.designsystem.Text22
 import com.thejohnsondev.ui.designsystem.TopRounded
 import com.thejohnsondev.ui.designsystem.colorscheme.themeColorUrl
+import com.thejohnsondev.ui.displaymessage.getAsComposeText
 import com.thejohnsondev.ui.displaymessage.getAsText
 import com.thejohnsondev.ui.utils.KeyboardManager
 import com.thejohnsondev.ui.utils.ResDrawable
@@ -756,7 +757,7 @@ private fun PasswordField(
                         .padding(end = Size8)
                         .weight(Percent100),
                     text = buildAnnotatedString {
-                        append(state.enteredPasswordStrength?.suggestion.orEmpty())
+                        append(state.enteredPasswordStrength?.suggestion?.getAsComposeText())
                     },
                     textAlign = TextAlign.Start,
                     style = MaterialTheme.typography.bodySmall,

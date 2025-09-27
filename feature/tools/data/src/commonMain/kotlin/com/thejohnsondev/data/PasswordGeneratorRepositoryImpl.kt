@@ -1,6 +1,7 @@
 package com.thejohnsondev.data
 
 import com.thejohnsondev.domain.repo.PasswordGenerationRepository
+import com.thejohnsondev.model.DisplayableMessageValue
 import com.thejohnsondev.model.tools.PasswordGeneratedResult
 import com.thejohnsondev.model.tools.PasswordGenerationType
 import com.thejohnsondev.model.tools.PasswordStrength
@@ -78,10 +79,10 @@ internal class PasswordGeneratorRepositoryImpl(private val commonPasswords: Set<
 
         if (rank != null) {
             val suggestion = when {
-                rank < 10 -> "This password is in the TOP 10 most common. Avoid it at all costs."
-                rank < 100 -> "This password is in the top 100 most common. It's very unsafe."
-                rank < 1000 -> "This password is in the top 1000 most common. It's easy to guess."
-                else -> "This password is very common. Choose a more unique one."
+                rank < 10 -> DisplayableMessageValue.Top10Common
+                rank < 100 -> DisplayableMessageValue.Top100Common
+                rank < 1000 -> DisplayableMessageValue.Top1000Common
+                else -> DisplayableMessageValue.VeryCommon
             }
             return PasswordStrength(0.1f, suggestion)
         }
@@ -106,14 +107,14 @@ internal class PasswordGeneratorRepositoryImpl(private val commonPasswords: Set<
         val score = (lengthScore + diversityScore).coerceAtMost(10) * 0.1f
 
         val suggestion = when (score) {
-            in 0.0..0.1 -> "Extremely weak! Use at least 8 characters with mixed cases and symbols."
-            in 0.2..0.3 -> "Too weak, add more characters and mix uppercase, lowercase, and numbers."
-            in 0.4..0.5 -> "Weak. Consider adding special symbols and increasing length."
-            0.6f -> "Moderate. Try using a longer password with symbols."
-            in 0.7..0.8 -> "Strong. Ensure it's not a common phrase."
-            0.9f -> "Very strong! Nearly unbreakable but avoid using personal information."
-            1f -> "Extremely strong! This password is highly secure."
-            else -> "Moderate. Try using a longer password with symbols."
+            in 0.0..0.1 -> DisplayableMessageValue.StrengthExtremelyWeak
+            in 0.2..0.3 -> DisplayableMessageValue.StrengthTooWeak
+            in 0.4..0.5 -> DisplayableMessageValue.StrengthWeak
+            0.6f -> DisplayableMessageValue.StrengthModerate
+            in 0.7..0.8 -> DisplayableMessageValue.StrengthStrong
+            0.9f -> DisplayableMessageValue.StrengthVeryStrong
+            1f -> DisplayableMessageValue.StrengthExtremelyStrong
+            else -> DisplayableMessageValue.StrengthModerate
         }
 
         return PasswordStrength(score, suggestion)

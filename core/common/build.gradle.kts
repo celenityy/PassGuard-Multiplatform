@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
 import com.codingfeline.buildkonfig.compiler.FieldSpec
+import java.io.ByteArrayOutputStream
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -86,11 +87,6 @@ dependencies {
     androidTestImplementation(libs.runner)
 }
 
-enum class AppType {
-    REAL,
-    DEMO
-}
-
 buildkonfig {
     packageName = "org.thejohnsondev.common"
 
@@ -148,6 +144,46 @@ buildkonfig {
             "SHOW_VAULT_TYPE_SELECTION",
             appConfigProperties["config.show_vault_type_selection"]?.toString() ?: "false"
         )
+        buildConfigField(
+            FieldSpec.Type.STRING,
+            "VERSION_NAME",
+            libs.versions.versionName.get()
+        )
+        val lastCommitTime = runGitCommand("git log -1 --format=%ct")
+        buildConfigField(
+            FieldSpec.Type.STRING,
+            "LAST_COMMIT_TIME",
+            lastCommitTime
+        )
+        val commitHash = runGitCommand("git rev-parse --short HEAD")
+        buildConfigField(
+            FieldSpec.Type.STRING,
+            "LAST_COMMIT_HASH",
+            commitHash
+        )
+        buildConfigField(
+            FieldSpec.Type.STRING,
+            "CONTACT_EMAIL",
+            appConfigProperties["config.contact_email"]?.toString() ?: ""
+        )
+        buildConfigField(
+            FieldSpec.Type.STRING,
+            "LOGO_PROVIDER_NAME",
+            appConfigProperties["config.logo_provider_name"]?.toString() ?: ""
+        )
+        buildConfigField(
+            FieldSpec.Type.STRING,
+            "LOGO_PROVIDER_URL",
+            appConfigProperties["config.logo_provider_url"]?.toString() ?: ""
+        )
     }
+}
 
+fun runGitCommand(cmd: String): String {
+    val stdout = ByteArrayOutputStream()
+    exec {
+        commandLine("bash", "-c", cmd)
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
 }

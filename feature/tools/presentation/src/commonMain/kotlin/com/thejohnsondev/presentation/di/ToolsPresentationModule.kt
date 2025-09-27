@@ -1,5 +1,11 @@
 package com.thejohnsondev.presentation.di
 
-import org.koin.core.module.Module
+import com.thejohnsondev.presentation.passwordgenerator.PasswordGeneratorViewModel
+import com.thejohnsondev.presentation.vaulthealth.VaultHealthViewModel
+import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.module
 
-expect val toolsPresentationModule: Module
+val toolsPresentationModule = module {
+    viewModelOf(::PasswordGeneratorViewModel)
+    viewModelOf(::VaultHealthViewModel)
+}

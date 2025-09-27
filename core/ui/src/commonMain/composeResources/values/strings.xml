@@ -42,10 +42,10 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="accept_and_agree">I accept and agree to the </string>
     <string name="terms_of_use"> Terms of Use</string>
-    <string name="terms_of_use_link">https://andrewdobosh.notion.site/Terms-of-use-bb7607b71dbc40d9a336c9ed38d5a7e8</string>
+    <string name="terms_of_use_link">https://doboshdev.notion.site/Terms-of-use-bb7607b71dbc40d9a336c9ed38d5a7e8?pvs=74</string>
     <string name="privacy_policy">Privacy Policy.</string>
     <string name="and"> and </string>
-    <string name="privacy_policy_link">https://andrewdobosh.notion.site/Privacy-Policy-3f95b4857e0e49a78b35f0ca837b4ec5</string>
+    <string name="privacy_policy_link">https://doboshdev.notion.site/Privacy-Policy-3f95b4857e0e49a78b35f0ca837b4ec5?pvs=74</string>
 
     <!--Vault-->
     <string name="vault">Vault</string>
@@ -252,6 +252,51 @@
     <string name="language_estonian">Estonian</string>
     <string name="language_maltese">Maltese</string>
 
+    <string name="about_title">About</string>
+    <string name="about_description">App version, licenses, and more</string>
+    <string name="version_info">Version info</string>
+    <string name="version_info_description">Information about the app version</string>
+    <string name="version_name_placeholder">Version %1$s</string>
+    <string name="last_update_placeholder">Last update on %1$s</string>
+    <string name="last_update_hash_placeholder">Last update hash: %1$s</string>
+    <string name="contact_info">Contact developer</string>
+    <string name="contact_info_description">Contact details and support</string>
+    <string name="contact_email_description">Contact the developer at: </string>
+    <string name="license_info">Libraries info</string>
+    <string name="license_info_description">Information about used libraries</string>
+    <string name="license_info_logos_provided">Logos provider</string>
+    <string name="license_info_haze">Haze</string>
+    <string name="license_info_haze_description">Background blur effect</string>
+    <string name="license_info_haze_url">https://github.com/chrisbanes/haze</string>
+    <string name="license_info_koin">Koin</string>
+    <string name="license_info_koin_description">Dependency injection framework</string>
+    <string name="license_info_koin_url">https://github.com/InsertKoinIO/koin</string>
+    <string name="license_info_posthog">Posthog</string>
+    <string name="license_info_posthog_description">Analytics platform</string>
+    <string name="license_info_posthog_url">https://github.com/PostHog/posthog</string>
+    <string name="license_info_nappier">Nappier</string>
+    <string name="license_info_nappier_description">Logging library</string>
+    <string name="license_info_nappier_url">https://github.com/AAkira/Napier</string>
+    <string name="license_info_arrow">Arrow</string>
+    <string name="license_info_arrow_description">Error handling library</string>
+    <string name="license_info_arrow_url">https://github.com/arrow-kt/arrow</string>
+    <string name="license_info_mockk">Mockk</string>
+    <string name="license_info_mockk_description">Unit test mocking library</string>
+    <string name="license_info_mockk_url">https://github.com/mockk/mockk</string>
+    <string name="license_info_sqldelight">SQLDelight</string>
+    <string name="license_info_sqldelight_description">Database ORM library</string>
+    <string name="license_info_sqldelight_url">https://github.com/sqldelight/sqldelight</string>
+    <string name="license_info_landscapist">Landscapist</string>
+    <string name="license_info_landscapist_description">Image loading library</string>
+    <string name="license_info_landscapist_url">https://github.com/skydoves/landscapist</string>
+    <string name="license_info_konnection">Konnection</string>
+    <string name="license_info_konnection_description">Network connectivity monitoring</string>
+    <string name="license_info_konnection_url">https://github.com/TM-Apps/konnection</string>
+    <string name="legal_info_title">Legal info</string>
+    <string name="legal_info_description">Privacy policy, Terms of service, Open source licenses</string>
+    <string name="legal_info_open_source_license">Open source license</string>
+    <string name="legal_info_open_source_license_link">https://github.com/thejohnsondev/PassGuard-Multiplatform?tab=CC0-1.0-1-ov-file#readme</string>
+
     <!--Onboarding-->
     <string name="onboarding_security_title">Your Data is Always Safe</string>
     <string name="onboarding_security_description">Your vault is protected with industry-leading encryption. Only you have the keys.</string>
@@ -260,5 +305,18 @@
     <string name="onboarding_export_title">Move Passwords Easily</string>
     <string name="onboarding_export_description">Import from Google Password Manager or export your vault anytime — you’re always in control.</string>
     <string name="onboarding_create_vault">Create Vault</string>
+
+    <!--Password generator-->
+    <string name="password_generator_top_10">This password is in the TOP 10 most common. Avoid it at all costs.</string>
+    <string name="password_generator_top_100">This password is in the top 100 most common. It's very unsafe.</string>
+    <string name="password_generator_top_1000">This password is in the top 1000 most common. It's easy to guess.</string>
+    <string name="password_generator_very_common">This password is very common. Choose a more unique one.</string>
+    <string name="password_generator_strength_extremely_weak">Extremely weak! Use at least 8 characters with mixed cases and symbols.</string>
+    <string name="password_generator_strength_too_weak">Too weak, add more characters and mix uppercase, lowercase, and numbers.</string>
+    <string name="password_generator_strength_weak">Weak. Consider adding special symbols and increasing length.</string>
+    <string name="password_generator_strength_moderate">Moderate. Try using a longer password with symbols.</string>
+    <string name="password_generator_strength_strong">Strong. Ensure it's not a common phrase.</string>
+    <string name="password_generator_strength_very_strong">Very strong! Nearly unbreakable but avoid using personal information.</string>
+    <string name="password_generator_strength_extremely_strong">Extremely strong! This password is highly secure.</string>
 
 </resources>

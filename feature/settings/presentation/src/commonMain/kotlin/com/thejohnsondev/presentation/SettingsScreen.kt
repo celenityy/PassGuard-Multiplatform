@@ -1,6 +1,11 @@
 package com.thejohnsondev.presentation
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.rememberTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -15,29 +20,54 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Article
+import androidx.compose.material.icons.automirrored.filled.LibraryBooks
+import androidx.compose.material.icons.filled.Article
+import androidx.compose.material.icons.filled.Balance
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Code
+import androidx.compose.material.icons.filled.Commit
+import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.Copyright
 import androidx.compose.material.icons.filled.Error
+import androidx.compose.material.icons.filled.FirstPage
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.LibraryAdd
+import androidx.compose.material.icons.filled.LibraryBooks
+import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Support
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
 import com.thejohnsondev.analytics.Analytics
+import com.thejohnsondev.common.EXPAND_ANIM_DURATION
 import com.thejohnsondev.localization.Language
 import com.thejohnsondev.model.OneTimeEvent
 import com.thejohnsondev.model.settings.DarkThemeConfig
@@ -52,17 +82,24 @@ import com.thejohnsondev.ui.components.ExpandableSectionItem
 import com.thejohnsondev.ui.components.HalfColoredCircle
 import com.thejohnsondev.ui.components.MiniSelectableOptionItem
 import com.thejohnsondev.ui.components.SelectableOptionItem
+import com.thejohnsondev.ui.components.animation.CardWithAnimatedBorder
+import com.thejohnsondev.ui.components.animation.getDefaultAnimatedBorderColors
 import com.thejohnsondev.ui.components.button.RoundedButton
 import com.thejohnsondev.ui.components.button.ToggleOptionItem
+import com.thejohnsondev.ui.components.container.RoundedContainer
 import com.thejohnsondev.ui.components.dialog.ConfirmAlertDialog
 import com.thejohnsondev.ui.designsystem.BottomRounded
+import com.thejohnsondev.ui.designsystem.EquallyRounded
+import com.thejohnsondev.ui.designsystem.Percent100
 import com.thejohnsondev.ui.designsystem.Percent80
+import com.thejohnsondev.ui.designsystem.Size12
 import com.thejohnsondev.ui.designsystem.Size16
 import com.thejohnsondev.ui.designsystem.Size2
 import com.thejohnsondev.ui.designsystem.Size24
 import com.thejohnsondev.ui.designsystem.Size36
 import com.thejohnsondev.ui.designsystem.Size4
 import com.thejohnsondev.ui.designsystem.Size56
+import com.thejohnsondev.ui.designsystem.Size64
 import com.thejohnsondev.ui.designsystem.Size72
 import com.thejohnsondev.ui.designsystem.Size8
 import com.thejohnsondev.ui.designsystem.TopRounded
@@ -87,6 +124,7 @@ import com.thejohnsondev.ui.utils.ResDrawable
 import com.thejohnsondev.ui.utils.ResString
 import com.thejohnsondev.ui.utils.applyIf
 import com.thejohnsondev.ui.utils.isCompact
+import com.thejohnsondev.ui.utils.padding
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
@@ -94,8 +132,9 @@ import vaultmultiplatform.core.ui.generated.resources.block_screenshot
 import vaultmultiplatform.core.ui.generated.resources.block_screenshot_description
 import vaultmultiplatform.core.ui.generated.resources.cancel
 import vaultmultiplatform.core.ui.generated.resources.confirm
-import vaultmultiplatform.core.ui.generated.resources.create_account
-import vaultmultiplatform.core.ui.generated.resources.create_account_description
+import vaultmultiplatform.core.ui.generated.resources.contact_email_description
+import vaultmultiplatform.core.ui.generated.resources.contact_info
+import vaultmultiplatform.core.ui.generated.resources.contact_info_description
 import vaultmultiplatform.core.ui.generated.resources.dangerous_zone
 import vaultmultiplatform.core.ui.generated.resources.dark_mode_preference
 import vaultmultiplatform.core.ui.generated.resources.dark_mode_preference_dark
@@ -109,14 +148,55 @@ import vaultmultiplatform.core.ui.generated.resources.delete_vault
 import vaultmultiplatform.core.ui.generated.resources.delete_vault_confirm_message
 import vaultmultiplatform.core.ui.generated.resources.ic_export_monochrome
 import vaultmultiplatform.core.ui.generated.resources.ic_import_monochrome
+import vaultmultiplatform.core.ui.generated.resources.ic_vault_108_gradient
 import vaultmultiplatform.core.ui.generated.resources.language
+import vaultmultiplatform.core.ui.generated.resources.last_update_hash_placeholder
+import vaultmultiplatform.core.ui.generated.resources.last_update_placeholder
+import vaultmultiplatform.core.ui.generated.resources.legal_info_description
+import vaultmultiplatform.core.ui.generated.resources.legal_info_open_source_license
+import vaultmultiplatform.core.ui.generated.resources.legal_info_open_source_license_link
+import vaultmultiplatform.core.ui.generated.resources.legal_info_title
+import vaultmultiplatform.core.ui.generated.resources.license_info
+import vaultmultiplatform.core.ui.generated.resources.license_info_arrow
+import vaultmultiplatform.core.ui.generated.resources.license_info_arrow_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_arrow_url
+import vaultmultiplatform.core.ui.generated.resources.license_info_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_haze
+import vaultmultiplatform.core.ui.generated.resources.license_info_haze_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_haze_url
+import vaultmultiplatform.core.ui.generated.resources.license_info_koin
+import vaultmultiplatform.core.ui.generated.resources.license_info_koin_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_koin_url
+import vaultmultiplatform.core.ui.generated.resources.license_info_konnection
+import vaultmultiplatform.core.ui.generated.resources.license_info_konnection_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_konnection_url
+import vaultmultiplatform.core.ui.generated.resources.license_info_landscapist
+import vaultmultiplatform.core.ui.generated.resources.license_info_landscapist_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_landscapist_url
+import vaultmultiplatform.core.ui.generated.resources.license_info_logos_provided
+import vaultmultiplatform.core.ui.generated.resources.license_info_mockk
+import vaultmultiplatform.core.ui.generated.resources.license_info_mockk_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_mockk_url
+import vaultmultiplatform.core.ui.generated.resources.license_info_nappier
+import vaultmultiplatform.core.ui.generated.resources.license_info_nappier_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_nappier_url
+import vaultmultiplatform.core.ui.generated.resources.license_info_posthog
+import vaultmultiplatform.core.ui.generated.resources.license_info_posthog_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_posthog_url
+import vaultmultiplatform.core.ui.generated.resources.license_info_sqldelight
+import vaultmultiplatform.core.ui.generated.resources.license_info_sqldelight_description
+import vaultmultiplatform.core.ui.generated.resources.license_info_sqldelight_url
 import vaultmultiplatform.core.ui.generated.resources.logout
 import vaultmultiplatform.core.ui.generated.resources.logout_confirm_message
 import vaultmultiplatform.core.ui.generated.resources.manage_account
 import vaultmultiplatform.core.ui.generated.resources.no
+import vaultmultiplatform.core.ui.generated.resources.privacy_policy
+import vaultmultiplatform.core.ui.generated.resources.privacy_policy_link
 import vaultmultiplatform.core.ui.generated.resources.setting_export_passwords
 import vaultmultiplatform.core.ui.generated.resources.setting_import_passwords
 import vaultmultiplatform.core.ui.generated.resources.settings
+import vaultmultiplatform.core.ui.generated.resources.terms_of_use
+import vaultmultiplatform.core.ui.generated.resources.terms_of_use_link
 import vaultmultiplatform.core.ui.generated.resources.theme
 import vaultmultiplatform.core.ui.generated.resources.theme_deep_forest
 import vaultmultiplatform.core.ui.generated.resources.theme_default
@@ -128,6 +208,9 @@ import vaultmultiplatform.core.ui.generated.resources.theme_violet
 import vaultmultiplatform.core.ui.generated.resources.unlock_with_biometrics
 import vaultmultiplatform.core.ui.generated.resources.unlock_with_biometrics_description
 import vaultmultiplatform.core.ui.generated.resources.use_dynamic_color
+import vaultmultiplatform.core.ui.generated.resources.version_info
+import vaultmultiplatform.core.ui.generated.resources.version_info_description
+import vaultmultiplatform.core.ui.generated.resources.version_name_placeholder
 import vaultmultiplatform.core.ui.generated.resources.yes
 
 @Composable
@@ -141,6 +224,7 @@ fun SettingsScreen(
     onShowMessage: (MessageContent) -> Unit,
 ) {
     val state = viewModel.state.collectAsState(SettingsViewModel.State())
+    val uriHandler = LocalUriHandler.current
 
     LaunchedEffect(Unit) {
         Analytics.trackScreen("Settings Screen")
@@ -191,7 +275,10 @@ fun SettingsScreen(
         windowSizeClass = windowSizeClass,
         paddingValues = paddingValues,
         onAction = viewModel::perform,
-        goToSignUp = onGoToSignUp
+        goToSignUp = onGoToSignUp,
+        openUrl = {
+            uriHandler.openUri(it)
+        }
     )
     Dialogs(
         windowSizeClass = windowSizeClass,
@@ -208,6 +295,7 @@ fun SettingsContent(
     paddingValues: PaddingValues,
     onAction: (SettingsViewModel.Action) -> Unit,
     goToSignUp: () -> Unit,
+    openUrl: (String) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -230,7 +318,8 @@ fun SettingsContent(
             SettingsList(
                 state = state,
                 paddingValues = paddingValues,
-                onAction = onAction, goToSignUp = goToSignUp
+                onAction = onAction, goToSignUp = goToSignUp,
+                openUrl = openUrl
             )
         }
     }
@@ -242,6 +331,7 @@ fun SettingsList(
     onAction: (SettingsViewModel.Action) -> Unit,
     goToSignUp: () -> Unit,
     paddingValues: PaddingValues,
+    openUrl: (String) -> Unit
 ) {
     val colors = ToolSelectableItemColors()
     Column(
@@ -262,8 +352,6 @@ fun SettingsList(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         .padding(
-                            start = Size16,
-                            end = Size16,
                             bottom = Size4
                         ),
                     state = state,
@@ -272,7 +360,8 @@ fun SettingsList(
                     subSectionIndex = index,
                     onAction = onAction,
                     goToSignUp = goToSignUp,
-                    colors = colors
+                    colors = colors,
+                    openUrl = openUrl
                 )
             }
         }
@@ -306,6 +395,7 @@ fun SettingsSubSections(
     onAction: (SettingsViewModel.Action) -> Unit,
     goToSignUp: () -> Unit,
     colors: SelectableItemColors,
+    openUrl: (String) -> Unit
 ) {
     val subsectionDescription =
         if (subSection.sectionTitleRes == ResString.manage_account) {
@@ -313,21 +403,36 @@ fun SettingsSubSections(
         } else {
             subSection.sectionDescriptionRes?.let { stringResource(resource = it) }
         }
-    // TODO make sub section icons colored like in new android settings
-
-    // TODO Onboarding screen
+    var isSectionExpanded by remember {
+        mutableStateOf(false)
+    }
+    val transitionState = remember {
+        MutableTransitionState(isSectionExpanded).apply {
+            targetState = !isSectionExpanded
+        }
+    }
+    val transition = rememberTransition(transitionState, label = "")
+    val cardPaddingHorizontal by transition.animateDp({
+        tween(durationMillis = EXPAND_ANIM_DURATION)
+    }, label = "") {
+        if (isSectionExpanded) Size8 else Size16
+    }
     ExpandableSectionItem(
-        modifier = modifier,
+        modifier = modifier
+            .padding(horizontal = cardPaddingHorizontal),
         title = stringResource(resource = subSection.sectionTitleRes),
         description = subsectionDescription,
         icon = subSection.sectionIcon.getImageVector(),
         isFirstItem = subSectionIndex == 0,
         isLastItem = subSectionIndex == subSectionsNumber - 1,
         onExpanded = {
-            Analytics.trackEvent("settings_subsection_expanded", mapOf(
-                "subsection" to subSection.sectionTitleRes.key,
-                "is_expanded" to it
-            ))
+            Analytics.trackEvent(
+                "settings_subsection_expanded", mapOf(
+                    "subsection" to subSection.sectionTitleRes.key,
+                    "is_expanded" to it
+                )
+            )
+            isSectionExpanded = it
         },
         colors = colors
     ) {
@@ -366,6 +471,10 @@ fun SettingsSubSections(
 
             SettingsSubSection.PrivacySettingsSub -> {
                 PrivacySettingsSubSection(state = state, onAction = onAction)
+            }
+
+            SettingsSubSection.AboutSettingsSub -> {
+                AboutSettingsSubSection(state = state, onAction = onAction, openUrl = openUrl)
             }
         }
     }
@@ -425,37 +534,38 @@ fun ManageLocalVaultSubSection(
     goToSignUp: () -> Unit,
     colors: SelectableItemColors,
 ) {
-    RoundedButton(
-        modifier = Modifier
-            .height(Size72)
-            .padding(start = Size16, end = Size16, bottom = Size8, top = Size2)
-            .fillMaxWidth(),
-        text = stringResource(resource = ResString.create_account),
-        onClick = {
-            goToSignUp()
-        },
-        colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-        )
-    )
-    Row(
-        modifier = Modifier.padding(start = Size16, end = Size16, bottom = Size8),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector = Icons.Default.Info,
-            tint = colors.getSelectedContentColor(),
-            contentDescription = null
-        )
-        Text(
-            modifier = Modifier
-                .padding(start = Size4),
-            text = stringResource(ResString.create_account_description),
-            color = colors.getSelectedContentColor(),
-            style = MaterialTheme.typography.bodySmall
-        )
-    }
+    // disabled for the first release
+//    RoundedButton(
+//        modifier = Modifier
+//            .height(Size72)
+//            .padding(start = Size16, end = Size16, bottom = Size8, top = Size2)
+//            .fillMaxWidth(),
+//        text = stringResource(resource = ResString.create_account),
+//        onClick = {
+//            goToSignUp()
+//        },
+//        colors = ButtonDefaults.buttonColors(
+//            containerColor = MaterialTheme.colorScheme.primaryContainer,
+//            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+//        )
+//    )
+//    Row(
+//        modifier = Modifier.padding(start = Size16, end = Size16, bottom = Size8),
+//        verticalAlignment = Alignment.CenterVertically
+//    ) {
+//        Icon(
+//            imageVector = Icons.Default.Info,
+//            tint = colors.getSelectedContentColor(),
+//            contentDescription = null
+//        )
+//        Text(
+//            modifier = Modifier
+//                .padding(start = Size4),
+//            text = stringResource(ResString.create_account_description),
+//            color = colors.getSelectedContentColor(),
+//            style = MaterialTheme.typography.bodySmall
+//        )
+//    }
     Column(
         modifier = Modifier
             .padding(start = Size16, end = Size16, top = Size8, bottom = Size16)
@@ -784,6 +894,410 @@ fun PrivacySettingsSubSection(
                     )
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun AboutSettingsSubSection(
+    state: SettingsViewModel.State,
+    onAction: (SettingsViewModel.Action) -> Unit,
+    openUrl: (String) -> Unit
+) {
+    Column(
+        modifier = Modifier.padding(start = Size16, end = Size16, bottom = Size16)
+    ) {
+        ExpandableSectionItem(
+            modifier = Modifier
+                .fillMaxWidth(),
+            title = stringResource(ResString.version_info),
+            description = stringResource(ResString.version_info_description),
+            icon = Icons.Default.Commit,
+            isFirstItem = true
+        ) {
+            VersionInfoSubSection(state = state)
+        }
+        ExpandableSectionItem(
+            modifier = Modifier
+                .padding(top = Size4)
+                .fillMaxWidth(),
+            title = stringResource(ResString.contact_info),
+            description = stringResource(ResString.contact_info_description),
+            icon = Icons.Default.Support
+        ) {
+            ContactInfoSubsection(
+                state = state,
+                onAction = onAction
+            )
+        }
+        ExpandableSectionItem(
+            modifier = Modifier
+                .padding(top = Size4)
+                .fillMaxWidth(),
+            title = stringResource(ResString.license_info),
+            description = stringResource(ResString.license_info_description),
+            icon = Icons.Default.Copyright
+        ) {
+            LicenseInfoSubsection(
+                state = state,
+                openUrl = openUrl
+            )
+        }
+        ExpandableSectionItem(
+            modifier = Modifier
+                .padding(top = Size4)
+                .fillMaxWidth(),
+            title = stringResource(ResString.legal_info_title),
+            description = stringResource(ResString.legal_info_description),
+            icon = Icons.Default.Balance,
+            isLastItem = true
+        ) {
+            LegalInfoSubsection(
+                state = state,
+                openUrl = openUrl
+            )
+        }
+    }
+}
+
+@Composable
+private fun VersionInfoSubSection(
+    state: SettingsViewModel.State
+) {
+    CardWithAnimatedBorder(
+        modifier = Modifier
+            .padding(horizontal = Size8, bottom = Size8),
+        borderColors = getDefaultAnimatedBorderColors()
+    ) {
+        RoundedContainer(
+            color = MaterialTheme.colorScheme.surfaceContainerHigh
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    modifier = Modifier
+                        .padding(Size16)
+                        .size(Size64),
+                    imageVector = vectorResource(ResDrawable.ic_vault_108_gradient),
+                    contentDescription = null,
+                )
+                Column(
+                    modifier = Modifier
+                        .weight(Percent100),
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.Center,
+                ) {
+                    Text(
+                        text = stringResource(
+                            ResString.version_name_placeholder,
+                            state.versionInfo?.versionName.orEmpty()
+                        )
+                    )
+                    state.versionInfo?.lastUpdateTime?.let { lastUpdateTime ->
+                        Text(
+                            text = stringResource(
+                                ResString.last_update_placeholder,
+                                lastUpdateTime
+                            ),
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Thin
+                        )
+                    }
+                    state.versionInfo?.lastUpdateHash?.let { lastUpdateHash ->
+                        Text(
+                            text = stringResource(
+                                ResString.last_update_hash_placeholder,
+                                lastUpdateHash
+                            ),
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Thin
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ContactInfoSubsection(
+    state: SettingsViewModel.State,
+    onAction: (SettingsViewModel.Action) -> Unit
+) {
+    val email = state.contactInfo?.developerEmail.orEmpty()
+
+    RoundedContainer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = Size8, bottom = Size8),
+        color = MaterialTheme.colorScheme.surfaceContainerHigh
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(Size16)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                Modifier.weight(Percent100),
+                horizontalAlignment = Alignment.Start,
+            ) {
+                Text(
+                    text = stringResource(ResString.contact_email_description),
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Thin,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                RoundedContainer(
+                    modifier = Modifier
+                        .padding(top = Size8),
+                    color = MaterialTheme.colorScheme.onSurface,
+                    shape = EquallyRounded.small
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .padding(vertical = Size4, horizontal = Size8),
+                        text = email,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.surface
+                    )
+                }
+            }
+            IconButton(
+                onClick = {
+                    onAction(SettingsViewModel.Action.CopyToClipboard(email))
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ContentCopy,
+                    contentDescription = "Copy Email"
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun LicenseInfoSubsection(
+    state: SettingsViewModel.State,
+    openUrl: (String) -> Unit
+) {
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = state.licenseInfo?.logoProviderName.orEmpty(),
+        description = stringResource(ResString.license_info_logos_provided),
+        url = state.licenseInfo?.logoProviderUrl.orEmpty(),
+        openUrl = openUrl,
+        isFirstItem = true
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_haze),
+        description = stringResource(ResString.license_info_haze_description),
+        url = stringResource(ResString.license_info_haze_url),
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_koin),
+        description = stringResource(ResString.license_info_koin_description),
+        url = stringResource(ResString.license_info_koin_url),
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_posthog),
+        description = stringResource(ResString.license_info_posthog_description),
+        url = stringResource(ResString.license_info_posthog_url),
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_nappier),
+        description = stringResource(ResString.license_info_nappier_description),
+        url = stringResource(ResString.license_info_nappier_url),
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_arrow),
+        description = stringResource(ResString.license_info_arrow_description),
+        url = stringResource(ResString.license_info_arrow_url),
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_mockk),
+        description = stringResource(ResString.license_info_mockk_description),
+        url = stringResource(ResString.license_info_mockk_url),
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_sqldelight),
+        description = stringResource(ResString.license_info_sqldelight_description),
+        url = stringResource(ResString.license_info_sqldelight_url),
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_landscapist),
+        description = stringResource(ResString.license_info_landscapist_description),
+        url = stringResource(ResString.license_info_landscapist_url),
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size8, horizontal = Size8)
+            .fillMaxWidth(),
+        name = stringResource(ResString.license_info_konnection),
+        description = stringResource(ResString.license_info_konnection_description),
+        url = stringResource(ResString.license_info_konnection_url),
+        openUrl = openUrl,
+        isLastItem = true
+    )
+}
+
+@Composable
+private fun LegalInfoSubsection(
+    state: SettingsViewModel.State,
+    openUrl: (String) -> Unit
+) {
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        description = stringResource(ResString.privacy_policy),
+        url = stringResource(ResString.privacy_policy_link),
+        icon = Icons.Default.PrivacyTip,
+        openUrl = openUrl,
+        isFirstItem = true
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        description = stringResource(ResString.terms_of_use),
+        url = stringResource(ResString.terms_of_use_link),
+        icon = Icons.AutoMirrored.Filled.Article,
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size8, horizontal = Size8)
+            .fillMaxWidth(),
+        description = stringResource(ResString.legal_info_open_source_license),
+        url = stringResource(ResString.legal_info_open_source_license_link),
+        icon = Icons.Default.Code,
+        isLastItem = true,
+        openUrl = openUrl,
+    )
+}
+
+@Composable
+fun LicenseInfoRow(
+    modifier: Modifier = Modifier,
+    name: String? = null,
+    description: String? = null,
+    url: String,
+    icon: ImageVector = Icons.AutoMirrored.Default.LibraryBooks,
+    isFirstItem: Boolean = false,
+    isLastItem: Boolean = false,
+    openUrl: (String) -> Unit
+) {
+    val shape = RoundedCornerShape(
+        topStart = if (isFirstItem) Size16 else Size4,
+        topEnd = if (isFirstItem) Size16 else Size4,
+        bottomStart = if (isLastItem) Size16 else Size4,
+        bottomEnd = if (isLastItem) Size16 else Size4
+    )
+    RoundedContainer(
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.surfaceContainerHigh,
+        onClick = {
+            openUrl(url)
+        },
+        shape = shape
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Surface(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .padding(Size16)
+                        .clip(EquallyRounded.small),
+                    color = MaterialTheme.colorScheme.onSurface
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .padding(Size8)
+                            .size(Size24),
+                        imageVector = icon,
+                        contentDescription = "icon",
+                        tint = MaterialTheme.colorScheme.surfaceContainer
+                    )
+                }
+                Column(
+                    modifier = Modifier
+                        .padding(vertical = Size12),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    name?.let {
+                        RoundedContainer(
+                            color = MaterialTheme.colorScheme.onSurface,
+                            shape = EquallyRounded.small
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(Size4),
+                                text = name,
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.surface
+                            )
+                        }
+                    }
+                    description?.let {
+                        Text(
+                            text = description,
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Normal,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                }
+            }
+            Icon(
+                modifier = Modifier
+                    .padding(Size12),
+                imageVector = Icons.Default.ChevronRight,
+                contentDescription = null,
+            )
         }
     }
 }

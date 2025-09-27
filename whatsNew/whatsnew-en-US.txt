@@ -1,2 +1,2 @@
 Changes:
-- Added Onboarding screens
+- Added About section

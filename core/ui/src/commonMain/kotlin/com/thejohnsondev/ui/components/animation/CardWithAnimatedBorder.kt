@@ -6,6 +6,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -38,6 +39,7 @@ fun getDefaultAnimatedBorderColors() = listOf(
 
 @Composable
 fun CardWithAnimatedBorder(
+    modifier: Modifier = Modifier,
     borderColors: List<Color> = emptyList(),
     content: @Composable () -> Unit
 ) {
@@ -52,7 +54,7 @@ fun CardWithAnimatedBorder(
     )
 
     val borderAlpha by infiniteTransition.animateFloat(
-        initialValue = 0f,
+        initialValue = 0.3f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(1500),
@@ -62,7 +64,7 @@ fun CardWithAnimatedBorder(
 
     val brush = Brush.sweepGradient(borderColors.map { it.copy(alpha = borderAlpha) })
 
-    Surface(modifier = Modifier, shape = RoundedCornerShape(Size20)) {
+    Surface(modifier = modifier, shape = RoundedCornerShape(Size20), color = Color.Transparent) {
         Surface(
             modifier = Modifier
                 .clipToBounds()
@@ -77,7 +79,8 @@ fun CardWithAnimatedBorder(
                         )
                     }
                     drawContent()
-                },
+                }
+                .background(Color.Transparent),
             shape = RoundedCornerShape(Size19)
         ) {
             Box { content() }
