@@ -37,10 +37,10 @@
     <string name="already_have_an_account">Вже маєте обліковий запис?</string>
     <string name="accept_and_agree">Я приймаю та погоджуюсь з </string>
     <string name="terms_of_use"> Умовами використання</string>
-    <string name="terms_of_use_link">https://andrewdobosh.notion.site/Terms-of-use-bb7607b71dbc40d9a336c9ed38d5a7e8</string>
+    <string name="terms_of_use_link">https://doboshdev.notion.site/Terms-of-use-bb7607b71dbc40d9a336c9ed38d5a7e8?pvs=74</string>
     <string name="privacy_policy">Політикою конфіденційності.</string>
     <string name="and"> та </string>
-    <string name="privacy_policy_link">https://andrewdobosh.notion.site/Privacy-Policy-3f95b4857e0e49a78b35f0ca837b4ec5</string>
+    <string name="privacy_policy_link">https://doboshdev.notion.site/Privacy-Policy-3f95b4857e0e49a78b35f0ca837b4ec5?pvs=74</string>
 
     <string name="vault">Сховище</string>
     <string name="delete_password">Видалити пароль</string>
@@ -277,6 +277,10 @@
     <string name="license_info_konnection">Konnection</string>
     <string name="license_info_konnection_description">Моніторинг мережевого з’єднання</string>
     <string name="license_info_konnection_url">https://github.com/TM-Apps/konnection</string>
+    <string name="legal_info_title">Юридична інформація</string>
+    <string name="legal_info_description">Політика конфіденційності, Умови використання, Ліцензії відкритого коду</string>
+    <string name="legal_info_open_source_license">Ліцензія відкритого коду</string>
+    <string name="legal_info_open_source_license_link">https://github.com/thejohnsondev/PassGuard-Multiplatform?tab=CC0-1.0-1-ov-file#readme</string>
 
     <string name="onboarding_security_title">Ваші дані завжди в безпеці</string>
     <string name="onboarding_security_description">Ваше сховище захищене провідним у галузі шифруванням. Лише ви маєте ключі.</string>

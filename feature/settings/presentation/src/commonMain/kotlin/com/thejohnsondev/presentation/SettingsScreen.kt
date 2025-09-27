@@ -25,15 +25,21 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.automirrored.filled.LibraryBooks
+import androidx.compose.material.icons.filled.Article
+import androidx.compose.material.icons.filled.Balance
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Commit
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Copyright
 import androidx.compose.material.icons.filled.Error
+import androidx.compose.material.icons.filled.FirstPage
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LibraryAdd
 import androidx.compose.material.icons.filled.LibraryBooks
+import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Support
 import androidx.compose.material3.ButtonDefaults
@@ -55,6 +61,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -145,6 +152,10 @@ import vaultmultiplatform.core.ui.generated.resources.ic_vault_108_gradient
 import vaultmultiplatform.core.ui.generated.resources.language
 import vaultmultiplatform.core.ui.generated.resources.last_update_hash_placeholder
 import vaultmultiplatform.core.ui.generated.resources.last_update_placeholder
+import vaultmultiplatform.core.ui.generated.resources.legal_info_description
+import vaultmultiplatform.core.ui.generated.resources.legal_info_open_source_license
+import vaultmultiplatform.core.ui.generated.resources.legal_info_open_source_license_link
+import vaultmultiplatform.core.ui.generated.resources.legal_info_title
 import vaultmultiplatform.core.ui.generated.resources.license_info
 import vaultmultiplatform.core.ui.generated.resources.license_info_arrow
 import vaultmultiplatform.core.ui.generated.resources.license_info_arrow_description
@@ -179,9 +190,13 @@ import vaultmultiplatform.core.ui.generated.resources.logout
 import vaultmultiplatform.core.ui.generated.resources.logout_confirm_message
 import vaultmultiplatform.core.ui.generated.resources.manage_account
 import vaultmultiplatform.core.ui.generated.resources.no
+import vaultmultiplatform.core.ui.generated.resources.privacy_policy
+import vaultmultiplatform.core.ui.generated.resources.privacy_policy_link
 import vaultmultiplatform.core.ui.generated.resources.setting_export_passwords
 import vaultmultiplatform.core.ui.generated.resources.setting_import_passwords
 import vaultmultiplatform.core.ui.generated.resources.settings
+import vaultmultiplatform.core.ui.generated.resources.terms_of_use
+import vaultmultiplatform.core.ui.generated.resources.terms_of_use_link
 import vaultmultiplatform.core.ui.generated.resources.theme
 import vaultmultiplatform.core.ui.generated.resources.theme_deep_forest
 import vaultmultiplatform.core.ui.generated.resources.theme_default
@@ -921,10 +936,23 @@ fun AboutSettingsSubSection(
                 .fillMaxWidth(),
             title = stringResource(ResString.license_info),
             description = stringResource(ResString.license_info_description),
-            icon = Icons.Default.Copyright,
-            isLastItem = true
+            icon = Icons.Default.Copyright
         ) {
             LicenseInfoSubsection(
+                state = state,
+                openUrl = openUrl
+            )
+        }
+        ExpandableSectionItem(
+            modifier = Modifier
+                .padding(top = Size4)
+                .fillMaxWidth(),
+            title = stringResource(ResString.legal_info_title),
+            description = stringResource(ResString.legal_info_description),
+            icon = Icons.Default.Balance,
+            isLastItem = true
+        ) {
+            LegalInfoSubsection(
                 state = state,
                 openUrl = openUrl
             )
@@ -1151,11 +1179,48 @@ private fun LicenseInfoSubsection(
 }
 
 @Composable
+private fun LegalInfoSubsection(
+    state: SettingsViewModel.State,
+    openUrl: (String) -> Unit
+) {
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        description = stringResource(ResString.privacy_policy),
+        url = stringResource(ResString.privacy_policy_link),
+        icon = Icons.Default.PrivacyTip,
+        openUrl = openUrl,
+        isFirstItem = true
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size4, horizontal = Size8)
+            .fillMaxWidth(),
+        description = stringResource(ResString.terms_of_use),
+        url = stringResource(ResString.terms_of_use_link),
+        icon = Icons.AutoMirrored.Filled.Article,
+        openUrl = openUrl,
+    )
+    LicenseInfoRow(
+        modifier = Modifier
+            .padding(bottom = Size8, horizontal = Size8)
+            .fillMaxWidth(),
+        description = stringResource(ResString.legal_info_open_source_license),
+        url = stringResource(ResString.legal_info_open_source_license_link),
+        icon = Icons.Default.Code,
+        isLastItem = true,
+        openUrl = openUrl,
+    )
+}
+
+@Composable
 fun LicenseInfoRow(
     modifier: Modifier = Modifier,
-    name: String,
-    description: String,
+    name: String? = null,
+    description: String? = null,
     url: String,
+    icon: ImageVector = Icons.AutoMirrored.Default.LibraryBooks,
     isFirstItem: Boolean = false,
     isLastItem: Boolean = false,
     openUrl: (String) -> Unit
@@ -1193,8 +1258,8 @@ fun LicenseInfoRow(
                         modifier = Modifier
                             .padding(Size8)
                             .size(Size24),
-                        imageVector = Icons.AutoMirrored.Default.LibraryBooks,
-                        contentDescription = "Ligrary icon",
+                        imageVector = icon,
+                        contentDescription = "icon",
                         tint = MaterialTheme.colorScheme.surfaceContainer
                     )
                 }
@@ -1203,25 +1268,28 @@ fun LicenseInfoRow(
                         .padding(vertical = Size12),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    RoundedContainer(
-                        color = MaterialTheme.colorScheme.onSurface,
-                        shape = EquallyRounded.small
-                    ) {
+                    name?.let {
+                        RoundedContainer(
+                            color = MaterialTheme.colorScheme.onSurface,
+                            shape = EquallyRounded.small
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(Size4),
+                                text = name,
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.surface
+                            )
+                        }
+                    }
+                    description?.let {
                         Text(
-                            modifier = Modifier
-                                .padding(Size4),
-                            text = name,
+                            text = description,
                             style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.surface
+                            fontWeight = FontWeight.Normal,
+                            color = MaterialTheme.colorScheme.onSurface
                         )
                     }
-                    Text(
-
-                        text = description,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Normal,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
                 }
             }
             Icon(
