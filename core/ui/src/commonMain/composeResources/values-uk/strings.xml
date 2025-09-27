@@ -286,4 +286,16 @@
     <string name="onboarding_export_description">Імпортуйте з Менеджера паролів Google або експортуйте своє сховище в будь-який час — ви завжди все контролюєте.</string>
     <string name="onboarding_create_vault">Створити сховище</string>
 
+    <string name="password_generator_top_10">Цей пароль входить до ТОП-10 найпоширеніших. Уникайте його за будь-яку ціну.</string>
+    <string name="password_generator_top_100">Цей пароль входить до ТОП-100 найпоширеніших. Він дуже небезпечний.</string>
+    <string name="password_generator_top_1000">Цей пароль входить до ТОП-1000 найпоширеніших. Його легко вгадати.</string>
+    <string name="password_generator_very_common">Цей пароль дуже поширений. Оберіть більш унікальний.</string>
+    <string name="password_generator_strength_extremely_weak">Надзвичайно слабкий! Використовуйте щонайменше 8 символів із різним регістром та символами.</string>
+    <string name="password_generator_strength_too_weak">Занадто слабкий. Додайте більше символів і змішайте великі літери, малі літери та цифри.</string>
+    <string name="password_generator_strength_weak">Слабкий. Розгляньте можливість додавання спеціальних символів і збільшення довжини.</string>
+    <string name="password_generator_strength_moderate">Помірний. Спробуйте використати довший пароль із символами.</string>
+    <string name="password_generator_strength_strong">Сильний. Переконайтеся, що це не поширена фраза.</string>
+    <string name="password_generator_strength_very_strong">Дуже сильний! Майже неможливо зламати, але уникайте використання особистої інформації.</string>
+    <string name="password_generator_strength_extremely_strong">Надзвичайно сильний! Цей пароль є високозахищеним.</string>
+
 </resources>

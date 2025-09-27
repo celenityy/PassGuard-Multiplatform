@@ -302,4 +302,17 @@
     <string name="onboarding_export_description">Import from Google Password Manager or export your vault anytime — you’re always in control.</string>
     <string name="onboarding_create_vault">Create Vault</string>
 
+    <!--Password generator-->
+    <string name="password_generator_top_10">This password is in the TOP 10 most common. Avoid it at all costs.</string>
+    <string name="password_generator_top_100">This password is in the top 100 most common. It's very unsafe.</string>
+    <string name="password_generator_top_1000">This password is in the top 1000 most common. It's easy to guess.</string>
+    <string name="password_generator_very_common">This password is very common. Choose a more unique one.</string>
+    <string name="password_generator_strength_extremely_weak">Extremely weak! Use at least 8 characters with mixed cases and symbols.</string>
+    <string name="password_generator_strength_too_weak">Too weak, add more characters and mix uppercase, lowercase, and numbers.</string>
+    <string name="password_generator_strength_weak">Weak. Consider adding special symbols and increasing length.</string>
+    <string name="password_generator_strength_moderate">Moderate. Try using a longer password with symbols.</string>
+    <string name="password_generator_strength_strong">Strong. Ensure it's not a common phrase.</string>
+    <string name="password_generator_strength_very_strong">Very strong! Nearly unbreakable but avoid using personal information.</string>
+    <string name="password_generator_strength_extremely_strong">Extremely strong! This password is highly secure.</string>
+
 </resources>

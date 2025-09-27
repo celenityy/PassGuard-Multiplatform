@@ -2,6 +2,7 @@ package com.thejohnsondev.data.passwordgenerator
 
 import com.thejohnsondev.data.HumanPasswordWords
 import com.thejohnsondev.data.PasswordGeneratorRepositoryImpl
+import com.thejohnsondev.model.DisplayableMessageValue
 import com.thejohnsondev.model.tools.PasswordGenerationType
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -90,7 +91,7 @@ class PasswordGenerationRepositoryImplTest {
         val strength = passwordGenerator.evaluateStrength("abc")
         assertEquals(0.0f, strength.level)
         assertEquals(
-            "Extremely weak! Use at least 8 characters with mixed cases and symbols.",
+            DisplayableMessageValue.StrengthExtremelyWeak,
             strength.suggestion
         )
     }
@@ -100,7 +101,7 @@ class PasswordGenerationRepositoryImplTest {
         val strength = passwordGenerator.evaluateStrength("abcdef")
         assertTrue(strength.level in 0.2f..0.3f)
         assertEquals(
-            "Moderate. Try using a longer password with symbols.",
+            DisplayableMessageValue.StrengthModerate,
             strength.suggestion
         )
     }
@@ -116,14 +117,14 @@ class PasswordGenerationRepositoryImplTest {
     fun `evaluate strength - good password`() {
         val strength = passwordGenerator.evaluateStrength("Abc12345!")
         assertTrue(strength.level in 0.7f..0.8f)
-        assertEquals("Moderate. Try using a longer password with symbols.", strength.suggestion)
+        assertEquals(DisplayableMessageValue.StrengthModerate, strength.suggestion)
     }
 
     @Test
     fun `evaluate strength - very strong password`() {
         val strength = passwordGenerator.evaluateStrength("A1b2C3d4E5F6G@H!")
         assertEquals(1f, strength.level)
-        assertEquals("Extremely strong! This password is highly secure.", strength.suggestion)
+        assertEquals(DisplayableMessageValue.StrengthExtremelyStrong, strength.suggestion)
     }
 
     @Test

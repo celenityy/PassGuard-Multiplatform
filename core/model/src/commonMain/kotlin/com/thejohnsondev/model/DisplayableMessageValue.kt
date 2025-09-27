@@ -17,4 +17,17 @@ sealed interface DisplayableMessageValue {
     data object ImportSuccessful : DisplayableMessageValue
     data object ImportUnsuccessful : DisplayableMessageValue
     data object Cancel: DisplayableMessageValue
+
+    // Password generator
+    data object Top10Common: DisplayableMessageValue
+    data object Top100Common: DisplayableMessageValue
+    data object Top1000Common: DisplayableMessageValue
+    data object VeryCommon: DisplayableMessageValue
+    data object StrengthExtremelyWeak: DisplayableMessageValue
+    data object StrengthTooWeak: DisplayableMessageValue
+    data object StrengthWeak: DisplayableMessageValue
+    data object StrengthModerate: DisplayableMessageValue
+    data object StrengthStrong: DisplayableMessageValue
+    data object StrengthVeryStrong: DisplayableMessageValue
+    data object StrengthExtremelyStrong: DisplayableMessageValue
 }

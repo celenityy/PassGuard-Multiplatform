@@ -286,4 +286,16 @@
     <string name="onboarding_export_description">Importa desde Google Password Manager o exporta tu bóveda en cualquier momento: tú siempre tienes el control.</string>
     <string name="onboarding_create_vault">Crear una bóveda</string>
 
+    <string name="password_generator_top_10">Esta contraseña se encuentra entre las 10 más comunes. Evítela a toda costa.</string>
+    <string name="password_generator_top_100">Esta contraseña se encuentra entre las 100 más comunes. Es muy insegura.</string>
+    <string name="password_generator_top_1000">Esta contraseña se encuentra entre las 1000 más comunes. Es fácil de adivinar.</string>
+    <string name="password_generator_very_common">Esta contraseña es muy común. Elija una más única.</string>
+    <string name="password_generator_strength_extremely_weak">¡Extremadamente débil! Use al menos 8 caracteres con mayúsculas, minúsculas y símbolos.</string>
+    <string name="password_generator_strength_too_weak">Demasiado débil. Agregue más caracteres y mezcle mayúsculas, minúsculas y números.</string>
+    <string name="password_generator_strength_weak">Débil. Considere agregar símbolos especiales y aumentar la longitud.</string>
+    <string name="password_generator_strength_moderate">Moderada. Intente usar una contraseña más larga con símbolos.</string>
+    <string name="password_generator_strength_strong">Fuerte. Asegúrese de que no sea una frase común.</string>
+    <string name="password_generator_strength_very_strong">¡Muy fuerte! Casi irrompible, pero evite usar información personal.</string>
+    <string name="password_generator_strength_extremely_strong">¡Extremadamente fuerte! Esta contraseña es altamente segura.</string>
+
 </resources>
