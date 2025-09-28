@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class OnboardingViewModel(
     private val authService: AuthService
@@ -32,6 +33,7 @@ class OnboardingViewModel(
     fun perform(action: Action) {
         when (action) {
             is Action.CreateLocalVault -> createLocalVault()
+            is Action.AcceptPrivacyPolicy -> acceptPrivacyPolicy(action.accepted)
         }
     }
 
@@ -43,13 +45,21 @@ class OnboardingViewModel(
         sendEvent(NavigateToHome)
     }
 
+    private fun acceptPrivacyPolicy(accepted: Boolean) = launch {
+        _state.update {
+            it.copy(isPrivacyPolicyAccepted = accepted)
+        }
+    }
+
     data object NavigateToHome : OneTimeEvent()
 
     sealed class Action {
         data object CreateLocalVault : Action()
+        data class AcceptPrivacyPolicy(val accepted: Boolean) : Action()
     }
 
     data class State(
         val screenState: ScreenState = ScreenState.ShowContent,
+        val isPrivacyPolicyAccepted: Boolean = false
     )
 }
