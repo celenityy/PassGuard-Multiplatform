@@ -50,7 +50,6 @@ import com.thejohnsondev.common.PASSWORD_IDLE_ITEM_HEIGHT
 import com.thejohnsondev.model.OneTimeEvent
 import com.thejohnsondev.model.ScreenState
 import com.thejohnsondev.presentation.additem.AddVaultItemScreen
-import com.thejohnsondev.ui.components.animation.AnimatedArrowPointer
 import com.thejohnsondev.ui.components.animation.ShimmerEffect
 import com.thejohnsondev.ui.components.button.ToggleButton
 import com.thejohnsondev.ui.components.dialog.ConfirmAlertDialog
@@ -63,16 +62,13 @@ import com.thejohnsondev.ui.designsystem.EquallyRounded
 import com.thejohnsondev.ui.designsystem.Percent50
 import com.thejohnsondev.ui.designsystem.Percent50i
 import com.thejohnsondev.ui.designsystem.Size10
-import com.thejohnsondev.ui.designsystem.Size136
 import com.thejohnsondev.ui.designsystem.Size16
 import com.thejohnsondev.ui.designsystem.Size22
 import com.thejohnsondev.ui.designsystem.Size4
 import com.thejohnsondev.ui.designsystem.Size56
-import com.thejohnsondev.ui.designsystem.Size64
 import com.thejohnsondev.ui.designsystem.Size68
 import com.thejohnsondev.ui.designsystem.Size8
 import com.thejohnsondev.ui.designsystem.Size80
-import com.thejohnsondev.ui.designsystem.Size98
 import com.thejohnsondev.ui.designsystem.colorscheme.getAppLogo
 import com.thejohnsondev.ui.designsystem.getGlobalFontFamily
 import com.thejohnsondev.ui.displaymessage.getAsText
@@ -93,6 +89,7 @@ import vaultmultiplatform.core.ui.generated.resources.delete_password
 import vaultmultiplatform.core.ui.generated.resources.delete_password_message
 import vaultmultiplatform.core.ui.generated.resources.empty_vault
 import vaultmultiplatform.core.ui.generated.resources.empty_vault_get_started
+import vaultmultiplatform.core.ui.generated.resources.filters
 import vaultmultiplatform.core.ui.generated.resources.nothing_found
 import vaultmultiplatform.core.ui.generated.resources.sort_by
 import vaultmultiplatform.core.ui.generated.resources.vault
@@ -339,7 +336,7 @@ fun VaultItemsList(
     val topPadding = paddingValues.calculateTopPadding()
     val bottomPadding = paddingValues.calculateBottomPadding().plus(Size68)
     if (state.isVaultEmpty) {
-        EmptyVaultPlaceholder(paddingValues)
+        EmptyVaultPlaceholder()
     } else {
         if (windowSizeClass.isCompact()) {
             CompactScreenList(
@@ -426,13 +423,8 @@ private fun LargeScreenList(
     ) {
         item {
             SearchBarRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        start = Size16,
-                        end = Size16,
-                        top = topPadding.plus(Size8),
-                        bottom = Size16
+                modifier = Modifier.fillMaxWidth().padding(
+                        start = Size16, end = Size16, top = topPadding.plus(Size8), bottom = Size16
                     ),
                 state = state,
                 isDeepSearchEnabled = state.isDeepSearchEnabled,
@@ -495,36 +487,27 @@ private fun BindPasswordItem(
     onAction: (VaultViewModel.Action) -> Unit,
 ) {
     PasswordItem(
-        modifier = modifier,
-        item = passwordModel,
-        onClick = {
-            onAction(
-                VaultViewModel.Action.ToggleOpenItem(
-                    passwordModel.id
-                )
+        modifier = modifier, item = passwordModel, onClick = {
+        onAction(
+            VaultViewModel.Action.ToggleOpenItem(
+                passwordModel.id
             )
-        },
-        isExpanded = passwordModel.isExpanded,
-        onDeleteClick = {
-            onAction(VaultViewModel.Action.ShowHideConfirmDelete(Pair(true, passwordModel.id)))
-        },
-        onCopy = { text ->
-            onAction(VaultViewModel.Action.OnCopyClick(text))
-        },
-        onEditClick = {
-            onAction(VaultViewModel.Action.OnEditClick(passwordModel))
-        },
-        onCopySensitive = { text ->
-            onAction(VaultViewModel.Action.OnCopySensitiveClick(text))
-        },
-        onFavoriteClick = {
-            onAction(
-                VaultViewModel.Action.OnMarkAsFavoriteClick(
-                    passwordModel.id, !passwordModel.isFavorite
-                )
+        )
+    }, isExpanded = passwordModel.isExpanded, onDeleteClick = {
+        onAction(VaultViewModel.Action.ShowHideConfirmDelete(Pair(true, passwordModel.id)))
+    }, onCopy = { text ->
+        onAction(VaultViewModel.Action.OnCopyClick(text))
+    }, onEditClick = {
+        onAction(VaultViewModel.Action.OnEditClick(passwordModel))
+    }, onCopySensitive = { text ->
+        onAction(VaultViewModel.Action.OnCopySensitiveClick(text))
+    }, onFavoriteClick = {
+        onAction(
+            VaultViewModel.Action.OnMarkAsFavoriteClick(
+                passwordModel.id, !passwordModel.isFavorite
             )
-        },
-        isFavorite = passwordModel.isFavorite
+        )
+    }, isFavorite = passwordModel.isFavorite
     )
 }
 
@@ -643,9 +626,8 @@ fun Sorting(
             ) {
                 Chip(
                     modifier = Modifier.padding(
-                        start = Size16, end = Size4, bottom = Size16, top = Size4
-                    ),
-                    filter = state.showFavoritesAtTopFilter
+                            start = Size16, end = Size4, bottom = Size16, top = Size4
+                        ), filter = state.showFavoritesAtTopFilter
                 ) { isSelected ->
                     onAction(VaultViewModel.Action.OnShowFavoritesAtTopClick(isSelected))
                 }
@@ -655,42 +637,25 @@ fun Sorting(
 }
 
 @Composable
-fun EmptyVaultPlaceholder(
-    paddingValues: PaddingValues,
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
+fun EmptyVaultPlaceholder() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = stringResource(ResString.empty_vault),
-                style = MaterialTheme.typography.headlineSmall,
-                fontFamily = getGlobalFontFamily(),
-                color = MaterialTheme.colorScheme.onSurface,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                modifier = Modifier.padding(top = Size8),
-                text = stringResource(ResString.empty_vault_get_started),
-                style = MaterialTheme.typography.bodyMedium,
-                fontFamily = getGlobalFontFamily(),
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        }
-        AnimatedArrowPointer(
-            modifier = Modifier
-                .padding(
-                    end = Size136,
-                    bottom = paddingValues.calculateBottomPadding().plus(Size64)
-                )
-                .size(Size98)
-                .align(Alignment.BottomEnd),
-            color = MaterialTheme.colorScheme.primary.copy(alpha = Percent50)
+        Text(
+            text = stringResource(ResString.empty_vault),
+            style = MaterialTheme.typography.headlineSmall,
+            fontFamily = getGlobalFontFamily(),
+            color = MaterialTheme.colorScheme.onSurface,
+            fontWeight = FontWeight.Bold
+        )
+        Text(
+            modifier = Modifier.padding(top = Size8),
+            text = stringResource(ResString.empty_vault_get_started),
+            style = MaterialTheme.typography.bodyMedium,
+            fontFamily = getGlobalFontFamily(),
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }
