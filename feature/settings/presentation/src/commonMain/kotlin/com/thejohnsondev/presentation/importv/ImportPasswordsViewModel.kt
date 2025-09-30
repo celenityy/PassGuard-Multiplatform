@@ -100,7 +100,6 @@ class ImportPasswordsViewModel(
         }
         withContext(Dispatchers.Default) {
             val parsedPasswordsResult = parsePasswordsCSVUseCase(csvContent)
-            Logger.d("Parsed passwords result: $parsedPasswordsResult")
             val decryptedPasswords = withContext(Dispatchers.Default) {
                 decryptPasswordsListUseCase(passwordsService.getUserPasswords().first())
             }
