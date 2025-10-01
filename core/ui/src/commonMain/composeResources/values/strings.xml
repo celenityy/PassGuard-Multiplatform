@@ -102,6 +102,7 @@
 
     <!--Vault health-->
     <string name="password_health">Vault health</string>
+    <string name="password_health_score">Score</string>
     <string name="password_health_old_title">Old passwords</string>
     <string name="password_health_old_title_positive">No old passwords</string>
     <string name="password_health_old_description">These passwords were updated more that %1$s days ago</string>

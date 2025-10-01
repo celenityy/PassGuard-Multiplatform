@@ -92,6 +92,7 @@
     <string name="select">Seleccionar</string>
 
     <string name="password_health">Salud de la bóveda</string>
+    <string name="password_health_score">Puntuación</string>
     <string name="password_health_old_title">Contraseñas antiguas</string>
     <string name="password_health_old_title_positive">No hay contraseñas antiguas</string>
     <string name="password_health_old_description">Estas contraseñas se actualizaron hace más de %1$s días</string>
