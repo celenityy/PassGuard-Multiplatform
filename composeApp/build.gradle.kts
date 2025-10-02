@@ -77,7 +77,6 @@ kotlin {
             api(project(":feature:settings:data"))
             api(project(":feature:settings:domain"))
             api(project(":feature:settings:presentation"))
-            api(project(":feature:autofill"))
 
             // Compose
             implementation(compose.runtime)
