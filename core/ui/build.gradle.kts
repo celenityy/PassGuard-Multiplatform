@@ -47,7 +47,6 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.ktor.serialization.kotlinx.json)
 
-            api(project(":core:model"))
             api(project(":core:common"))
 
             // Compose

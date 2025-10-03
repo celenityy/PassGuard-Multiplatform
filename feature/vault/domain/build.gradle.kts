@@ -30,7 +30,6 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":core:model"))
             api(project(":core:common"))
             api(project(":core:ui"))
             api(project(":core:sync"))

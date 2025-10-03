@@ -40,7 +40,6 @@ kotlin {
         }
         commonMain.dependencies {
             api(project(":core:common"))
-            api(project(":core:model"))
 
             implementation(libs.ktor.serialization.kotlinx.json)
 
