@@ -16,8 +16,8 @@ import com.thejohnsondev.common.navigation.Routes
 import com.thejohnsondev.common.utils.BuildKonfigProvider
 import com.thejohnsondev.common.utils.Logger
 import com.thejohnsondev.domain.model.AnalyticsProps
-import com.thejohnsondev.model.settings.DarkThemeConfig
-import com.thejohnsondev.model.settings.SettingsConfig
+import com.thejohnsondev.common.model.settings.DarkThemeConfig
+import com.thejohnsondev.common.model.settings.SettingsConfig
 import com.thejohnsondev.ui.designsystem.DeviceThemeConfig
 import com.thejohnsondev.ui.designsystem.colorscheme.VaultDefaultTheme
 import org.koin.compose.KoinContext

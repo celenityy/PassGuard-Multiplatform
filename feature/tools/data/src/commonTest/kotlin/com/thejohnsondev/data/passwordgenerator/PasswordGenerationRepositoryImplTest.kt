@@ -2,8 +2,8 @@ package com.thejohnsondev.data.passwordgenerator
 
 import com.thejohnsondev.data.HumanPasswordWords
 import com.thejohnsondev.data.PasswordGeneratorRepositoryImpl
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.tools.PasswordGenerationType
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.tools.PasswordGenerationType
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

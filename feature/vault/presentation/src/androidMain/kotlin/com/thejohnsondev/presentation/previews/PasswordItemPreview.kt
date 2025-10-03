@@ -2,7 +2,7 @@ package com.thejohnsondev.presentation.previews
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.thejohnsondev.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
 import com.thejohnsondev.ui.components.vault.passworditem.PasswordItem
 import com.thejohnsondev.ui.designsystem.colorscheme.VaultDefaultTheme
 import com.thejohnsondev.ui.components.vault.passworditem.PasswordUIModel

@@ -1,8 +1,8 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.domain.repo.ToolsRepository
-import com.thejohnsondev.model.tools.PasswordGenerationType
-import com.thejohnsondev.model.tools.PasswordGeneratorConfig
+import com.thejohnsondev.common.model.tools.PasswordGenerationType
+import com.thejohnsondev.common.model.tools.PasswordGeneratorConfig
 
 class UpdatePasswordGeneratorConfigUseCase(
     private val toolsRepository: ToolsRepository,

@@ -2,7 +2,6 @@ package com.thejohnsondev.presentation.importv
 
 import androidx.lifecycle.viewModelScope
 import com.thejohnsondev.common.base.BaseViewModel
-import com.thejohnsondev.common.utils.Logger
 import com.thejohnsondev.domain.CheckPassDuplicatesUseCase
 import com.thejohnsondev.domain.DecryptPasswordsListUseCase
 import com.thejohnsondev.domain.EncryptPasswordModelUseCase
@@ -13,9 +12,9 @@ import com.thejohnsondev.domain.SelectCSVUseCase
 import com.thejohnsondev.domain.ToggleOpenedItemUseCase
 import com.thejohnsondev.domain.export.CsvParsingResult
 import com.thejohnsondev.domain.export.FailedPasswordParsingEntry
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.OneTimeEvent
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.OneTimeEvent
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.platform.filemanager.FileActionStatus
 import com.thejohnsondev.ui.components.vault.passworditem.PasswordUIModel
 import kotlinx.coroutines.Dispatchers

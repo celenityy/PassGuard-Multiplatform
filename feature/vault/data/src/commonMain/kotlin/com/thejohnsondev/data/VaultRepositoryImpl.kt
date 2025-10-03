@@ -3,8 +3,8 @@ package com.thejohnsondev.data
 import arrow.core.Either
 import com.thejohnsondev.datastore.PreferencesDataStore
 import com.thejohnsondev.domain.repo.VaultRepository
-import com.thejohnsondev.model.Error
-import com.thejohnsondev.model.auth.logo.FindLogoResponse
+import com.thejohnsondev.common.model.Error
+import com.thejohnsondev.common.model.auth.logo.FindLogoResponse
 import com.thejohnsondev.network.logo.LogoApi
 
 class VaultRepositoryImpl(

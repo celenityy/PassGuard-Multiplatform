@@ -27,7 +27,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.automirrored.filled.LibraryBooks
-import androidx.compose.material.icons.filled.Article
 import androidx.compose.material.icons.filled.Balance
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Code
@@ -35,10 +34,7 @@ import androidx.compose.material.icons.filled.Commit
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Copyright
 import androidx.compose.material.icons.filled.Error
-import androidx.compose.material.icons.filled.FirstPage
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.LibraryAdd
-import androidx.compose.material.icons.filled.LibraryBooks
 import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Support
@@ -69,11 +65,11 @@ import androidx.compose.ui.text.font.FontWeight
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.common.EXPAND_ANIM_DURATION
 import com.thejohnsondev.localization.Language
-import com.thejohnsondev.model.OneTimeEvent
-import com.thejohnsondev.model.settings.DarkThemeConfig
-import com.thejohnsondev.model.settings.GeneralSettings
-import com.thejohnsondev.model.settings.PrivacySettings
-import com.thejohnsondev.model.settings.ThemeBrand
+import com.thejohnsondev.common.model.OneTimeEvent
+import com.thejohnsondev.common.model.settings.DarkThemeConfig
+import com.thejohnsondev.common.model.settings.GeneralSettings
+import com.thejohnsondev.common.model.settings.PrivacySettings
+import com.thejohnsondev.common.model.settings.ThemeBrand
 import com.thejohnsondev.presentation.confirmdelete.DeleteAccountPasswordConfirmDialog
 import com.thejohnsondev.presentation.exportv.ExportPasswordsScreen
 import com.thejohnsondev.presentation.importv.ImportPasswordsScreen

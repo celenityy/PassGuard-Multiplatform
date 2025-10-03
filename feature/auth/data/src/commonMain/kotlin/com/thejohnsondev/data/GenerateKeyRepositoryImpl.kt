@@ -2,7 +2,7 @@ package com.thejohnsondev.data
 
 import arrow.core.Either
 import com.thejohnsondev.domain.repo.GenerateKeyRepository
-import com.thejohnsondev.model.Error
+import com.thejohnsondev.common.model.Error
 import com.thejohnsondev.platform.encryption.KeyGenerator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf

@@ -44,9 +44,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.thejohnsondev.common.EXPAND_ANIM_DURATION
-import com.thejohnsondev.model.tools.PASSWORD_GENERATOR_MAX_LENGTH
-import com.thejohnsondev.model.tools.PASSWORD_GENERATOR_MIN_LENGTH
-import com.thejohnsondev.model.tools.PasswordGeneratedResult
+import com.thejohnsondev.common.model.tools.PASSWORD_GENERATOR_MAX_LENGTH
+import com.thejohnsondev.common.model.tools.PASSWORD_GENERATOR_MIN_LENGTH
+import com.thejohnsondev.common.model.tools.PasswordGeneratedResult
 import com.thejohnsondev.ui.components.button.RoundedButton
 import com.thejohnsondev.ui.components.button.ToggleOptionItem
 import com.thejohnsondev.ui.components.container.ExpandableContent

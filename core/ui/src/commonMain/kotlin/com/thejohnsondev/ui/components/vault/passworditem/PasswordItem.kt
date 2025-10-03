@@ -57,7 +57,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import com.thejohnsondev.common.EXPAND_ANIM_DURATION
 import com.thejohnsondev.common.utils.hidden
-import com.thejohnsondev.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
 import com.thejohnsondev.ui.components.container.ExpandableContent
 import com.thejohnsondev.ui.components.LoadedImage
 import com.thejohnsondev.ui.components.container.RoundedContainer

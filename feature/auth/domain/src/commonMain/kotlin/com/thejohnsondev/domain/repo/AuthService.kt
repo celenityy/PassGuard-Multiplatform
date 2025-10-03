@@ -1,10 +1,10 @@
 package com.thejohnsondev.domain.repo
 
 import arrow.core.Either
-import com.thejohnsondev.model.Error
-import com.thejohnsondev.model.auth.firebase.FBAuthSignInResponse
-import com.thejohnsondev.model.auth.firebase.FBAuthSignUpResponse
-import com.thejohnsondev.model.auth.firebase.FBRefreshTokenResponseBody
+import com.thejohnsondev.common.model.Error
+import com.thejohnsondev.common.model.auth.firebase.FBAuthSignInResponse
+import com.thejohnsondev.common.model.auth.firebase.FBAuthSignUpResponse
+import com.thejohnsondev.common.model.auth.firebase.FBRefreshTokenResponseBody
 import kotlinx.coroutines.flow.Flow
 
 interface AuthService {

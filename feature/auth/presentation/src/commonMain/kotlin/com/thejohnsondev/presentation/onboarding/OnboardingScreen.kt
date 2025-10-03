@@ -40,7 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.lerp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.thejohnsondev.analytics.Analytics
-import com.thejohnsondev.model.ScreenState.Companion.isLoading
+import com.thejohnsondev.common.model.ScreenState.Companion.isLoading
 import com.thejohnsondev.ui.components.button.BackArrowButton
 import com.thejohnsondev.ui.components.button.RoundedButton
 import com.thejohnsondev.ui.components.text.PRIVACY_POLICY_TAG

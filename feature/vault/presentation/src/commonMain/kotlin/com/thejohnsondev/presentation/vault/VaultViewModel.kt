@@ -21,10 +21,10 @@ import com.thejohnsondev.domain.ToggleOpenedItemUseCase
 import com.thejohnsondev.domain.UpdateSelectedFiltersUseCase
 import com.thejohnsondev.domain.service.AppliedFiltersService
 import com.thejohnsondev.domain.service.PasswordsService
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.OneTimeEvent
-import com.thejohnsondev.model.ScreenState
-import com.thejohnsondev.model.settings.SettingsConfig
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.OneTimeEvent
+import com.thejohnsondev.common.model.ScreenState
+import com.thejohnsondev.common.model.settings.SettingsConfig
 import com.thejohnsondev.sync.SyncManager
 import com.thejohnsondev.ui.components.vault.passworditem.PasswordUIModel
 import com.thejohnsondev.ui.model.FilterUIModel

@@ -18,7 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.thejohnsondev.model.tools.PasswordGeneratedResult
+import com.thejohnsondev.common.model.tools.PasswordGeneratedResult
 import com.thejohnsondev.ui.components.dialog.ModalDragHandle
 import com.thejohnsondev.ui.designsystem.Size16
 import com.thejohnsondev.ui.utils.ResString

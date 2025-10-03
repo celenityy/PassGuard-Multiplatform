@@ -64,10 +64,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.common.SCROLL_DOWN_DELAY
-import com.thejohnsondev.model.OneTimeEvent
-import com.thejohnsondev.model.ScreenState
-import com.thejohnsondev.model.auth.logo.FindLogoResponse
-import com.thejohnsondev.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.OneTimeEvent
+import com.thejohnsondev.common.model.ScreenState
+import com.thejohnsondev.common.model.auth.logo.FindLogoResponse
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
 import com.thejohnsondev.presentation.component.CategorySelectorItem
 import com.thejohnsondev.presentation.passwordgenerator.PASSWORD_ANIM_DURATION
 import com.thejohnsondev.presentation.passwordgenerator.PasswordGeneratorBottomSheet

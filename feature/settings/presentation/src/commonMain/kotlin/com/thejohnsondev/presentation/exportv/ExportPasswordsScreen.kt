@@ -31,8 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.ui.components.button.RoundedButton
 import com.thejohnsondev.ui.components.dialog.ModalDragHandle
 import com.thejohnsondev.ui.designsystem.Percent100

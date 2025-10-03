@@ -20,8 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import com.thejohnsondev.common.empty
-import com.thejohnsondev.model.ScreenState
-import com.thejohnsondev.model.validation.PasswordValidationState
+import com.thejohnsondev.common.model.ScreenState
+import com.thejohnsondev.common.model.validation.PasswordValidationState
 import com.thejohnsondev.presentation.SettingsViewModel
 import com.thejohnsondev.ui.components.button.RoundedButton
 import com.thejohnsondev.ui.components.text.PrimaryOutlinedTextField

@@ -17,7 +17,7 @@ import com.thejohnsondev.domain.GetAnalyticsPropsUseCase
 import com.thejohnsondev.domain.GetFirstScreenRouteUseCase
 import com.thejohnsondev.domain.GetSettingsFlowUseCase
 import com.thejohnsondev.domain.model.AnalyticsProps
-import com.thejohnsondev.model.settings.SettingsConfig
+import com.thejohnsondev.common.model.settings.SettingsConfig
 import com.thejohnsondev.platform.filemanager.AndroidActivityProvider
 import com.thejohnsondev.ui.designsystem.DeviceThemeConfig
 import kotlinx.coroutines.launch

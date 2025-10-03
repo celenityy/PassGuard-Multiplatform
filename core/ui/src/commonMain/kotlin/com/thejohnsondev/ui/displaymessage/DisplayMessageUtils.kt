@@ -1,7 +1,7 @@
 package com.thejohnsondev.ui.displaymessage
 
 import androidx.compose.runtime.Composable
-import com.thejohnsondev.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.DisplayableMessageValue
 import com.thejohnsondev.ui.utils.ResString
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString

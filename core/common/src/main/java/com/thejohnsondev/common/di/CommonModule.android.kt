@@ -1,7 +1,7 @@
 package com.thejohnsondev.common.di
 
-import com.thejohnsondev.model.auth.firebase.FBApiKey
-import com.thejohnsondev.model.auth.logo.LogoApiKey
+import com.thejohnsondev.common.model.auth.firebase.FBApiKey
+import com.thejohnsondev.common.model.auth.logo.LogoApiKey
 import org.koin.dsl.module
 import org.thejohnsondev.common.BuildKonfig
 

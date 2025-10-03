@@ -42,8 +42,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.common.EXPAND_ANIM_DURATION
-import com.thejohnsondev.model.ScreenState
-import com.thejohnsondev.model.vault.VaultType
+import com.thejohnsondev.common.model.ScreenState
+import com.thejohnsondev.common.model.vault.VaultType
 import com.thejohnsondev.ui.components.button.BackArrowButton
 import com.thejohnsondev.ui.components.container.ExpandableContent
 import com.thejohnsondev.ui.components.button.RoundedButton
