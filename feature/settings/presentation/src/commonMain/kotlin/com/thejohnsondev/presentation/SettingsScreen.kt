@@ -64,12 +64,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.common.EXPAND_ANIM_DURATION
-import com.thejohnsondev.localization.Language
 import com.thejohnsondev.common.model.OneTimeEvent
 import com.thejohnsondev.common.model.settings.DarkThemeConfig
 import com.thejohnsondev.common.model.settings.GeneralSettings
 import com.thejohnsondev.common.model.settings.PrivacySettings
 import com.thejohnsondev.common.model.settings.ThemeBrand
+import com.thejohnsondev.localization.Language
 import com.thejohnsondev.presentation.confirmdelete.DeleteAccountPasswordConfirmDialog
 import com.thejohnsondev.presentation.exportv.ExportPasswordsScreen
 import com.thejohnsondev.presentation.importv.ImportPasswordsScreen
@@ -84,7 +84,6 @@ import com.thejohnsondev.ui.components.button.RoundedButton
 import com.thejohnsondev.ui.components.button.ToggleOptionItem
 import com.thejohnsondev.ui.components.container.RoundedContainer
 import com.thejohnsondev.ui.components.dialog.ConfirmAlertDialog
-import com.thejohnsondev.ui.designsystem.BottomRounded
 import com.thejohnsondev.ui.designsystem.EquallyRounded
 import com.thejohnsondev.ui.designsystem.Percent100
 import com.thejohnsondev.ui.designsystem.Percent80
@@ -94,14 +93,13 @@ import com.thejohnsondev.ui.designsystem.Size2
 import com.thejohnsondev.ui.designsystem.Size24
 import com.thejohnsondev.ui.designsystem.Size36
 import com.thejohnsondev.ui.designsystem.Size4
-import com.thejohnsondev.ui.designsystem.Size56
 import com.thejohnsondev.ui.designsystem.Size64
 import com.thejohnsondev.ui.designsystem.Size72
 import com.thejohnsondev.ui.designsystem.Size8
-import com.thejohnsondev.ui.designsystem.TopRounded
 import com.thejohnsondev.ui.designsystem.colorscheme.selectableitemcolor.DefaultSelectableItemColors
 import com.thejohnsondev.ui.designsystem.colorscheme.selectableitemcolor.SelectableItemColors
 import com.thejohnsondev.ui.designsystem.colorscheme.selectableitemcolor.themes.DeepForestSelectableItemColors
+import com.thejohnsondev.ui.designsystem.colorscheme.selectableitemcolor.themes.MaterialSelectableItemColors
 import com.thejohnsondev.ui.designsystem.colorscheme.selectableitemcolor.themes.MonochromeSelectableItemsColors
 import com.thejohnsondev.ui.designsystem.colorscheme.selectableitemcolor.themes.RedAlgaeSelectableItemColors
 import com.thejohnsondev.ui.designsystem.colorscheme.selectableitemcolor.themes.SunnySelectableItemColors
@@ -791,52 +789,28 @@ fun ExportSettingsSubSection(
     Column(
         modifier = Modifier.padding(start = Size16, end = Size16, bottom = Size16)
     ) {
-        RoundedButton(
+        LargeInfoButton(
             modifier = Modifier
-                .height(Size56)
+                .padding(bottom = Size4)
                 .fillMaxWidth(),
-            text = stringResource(ResString.setting_export_passwords),
-            imageComposable = {
-                Icon(
-                    modifier = Modifier
-                        .padding(end = Size8)
-                        .size(Size24),
-                    imageVector = vectorResource(ResDrawable.ic_export_monochrome),
-                    contentDescription = null
-                )
-            },
+            description = stringResource(ResString.setting_export_passwords),
+            icon = vectorResource(ResDrawable.ic_export_monochrome),
             onClick = {
                 onAction(SettingsViewModel.Action.OpenCloseExportPasswords(true))
             },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-            ),
-            buttonShape = TopRounded
+            isFirstItem = true,
+            colors = MaterialSelectableItemColors
         )
-        RoundedButton(
+        LargeInfoButton(
             modifier = Modifier
-                .padding(top = Size4)
-                .height(Size56)
                 .fillMaxWidth(),
-            text = stringResource(ResString.setting_import_passwords),
+            description = stringResource(ResString.setting_import_passwords),
+            icon = vectorResource(ResDrawable.ic_import_monochrome),
             onClick = {
                 onAction(SettingsViewModel.Action.OpenCloseImportPasswords(true))
             },
-            imageComposable = {
-                Icon(
-                    modifier = Modifier
-                        .padding(end = Size8)
-                        .size(Size24),
-                    imageVector = vectorResource(ResDrawable.ic_import_monochrome),
-                    contentDescription = null
-                )
-            },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-            ),
-            buttonShape = BottomRounded
+            isLastItem = true,
+            colors = MaterialSelectableItemColors
         )
     }
 }
@@ -949,7 +923,6 @@ fun AboutSettingsSubSection(
             isLastItem = true
         ) {
             LegalInfoSubsection(
-                state = state,
                 openUrl = openUrl
             )
         }
@@ -1080,146 +1053,171 @@ private fun LicenseInfoSubsection(
     state: SettingsViewModel.State,
     openUrl: (String) -> Unit
 ) {
-    LicenseInfoRow(
+    val hazeUrl = stringResource(ResString.license_info_haze_url)
+    val koinUrl = stringResource(ResString.license_info_koin_url)
+    val postHogUrl = stringResource(ResString.license_info_posthog_url)
+    val nappierUrl = stringResource(ResString.license_info_nappier_url)
+    val arrowUrl = stringResource(ResString.license_info_arrow_url)
+    val mockkUrl = stringResource(ResString.license_info_mockk_url)
+    val sqlDelightUrl = stringResource(ResString.license_info_sqldelight_url)
+    val landscapistUrl = stringResource(ResString.license_info_landscapist_url)
+    val konnectionUrl = stringResource(ResString.license_info_konnection_url)
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = state.licenseInfo?.logoProviderName.orEmpty(),
         description = stringResource(ResString.license_info_logos_provided),
-        url = state.licenseInfo?.logoProviderUrl.orEmpty(),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(state.licenseInfo?.logoProviderUrl.orEmpty())
+        },
         isFirstItem = true
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_haze),
         description = stringResource(ResString.license_info_haze_description),
-        url = stringResource(ResString.license_info_haze_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(hazeUrl)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_koin),
         description = stringResource(ResString.license_info_koin_description),
-        url = stringResource(ResString.license_info_koin_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(koinUrl)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_posthog),
         description = stringResource(ResString.license_info_posthog_description),
-        url = stringResource(ResString.license_info_posthog_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(postHogUrl)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_nappier),
         description = stringResource(ResString.license_info_nappier_description),
-        url = stringResource(ResString.license_info_nappier_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(nappierUrl)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_arrow),
         description = stringResource(ResString.license_info_arrow_description),
-        url = stringResource(ResString.license_info_arrow_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(arrowUrl)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_mockk),
         description = stringResource(ResString.license_info_mockk_description),
-        url = stringResource(ResString.license_info_mockk_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(mockkUrl)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_sqldelight),
         description = stringResource(ResString.license_info_sqldelight_description),
-        url = stringResource(ResString.license_info_sqldelight_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(sqlDelightUrl)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_landscapist),
         description = stringResource(ResString.license_info_landscapist_description),
-        url = stringResource(ResString.license_info_landscapist_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(landscapistUrl)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size8, horizontal = Size8)
             .fillMaxWidth(),
         name = stringResource(ResString.license_info_konnection),
         description = stringResource(ResString.license_info_konnection_description),
-        url = stringResource(ResString.license_info_konnection_url),
-        openUrl = openUrl,
+        onClick = {
+            openUrl(konnectionUrl)
+        },
         isLastItem = true
     )
 }
 
 @Composable
 private fun LegalInfoSubsection(
-    state: SettingsViewModel.State,
     openUrl: (String) -> Unit
 ) {
-    LicenseInfoRow(
+    val privacyPolicyLink = stringResource(ResString.privacy_policy_link)
+    val termsOfUseLink = stringResource(ResString.terms_of_use_link)
+    val openSourceLicenseLink = stringResource(ResString.legal_info_open_source_license_link)
+
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         description = stringResource(ResString.privacy_policy),
-        url = stringResource(ResString.privacy_policy_link),
         icon = Icons.Default.PrivacyTip,
-        openUrl = openUrl,
-        isFirstItem = true
+        isFirstItem = true,
+        onClick = {
+            openUrl(privacyPolicyLink)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size4, horizontal = Size8)
             .fillMaxWidth(),
         description = stringResource(ResString.terms_of_use),
-        url = stringResource(ResString.terms_of_use_link),
         icon = Icons.AutoMirrored.Filled.Article,
-        openUrl = openUrl,
+        onClick = {
+            openUrl(termsOfUseLink)
+        }
     )
-    LicenseInfoRow(
+    LargeInfoButton(
         modifier = Modifier
             .padding(bottom = Size8, horizontal = Size8)
             .fillMaxWidth(),
         description = stringResource(ResString.legal_info_open_source_license),
-        url = stringResource(ResString.legal_info_open_source_license_link),
         icon = Icons.Default.Code,
         isLastItem = true,
-        openUrl = openUrl,
+        onClick = {
+            openUrl(openSourceLicenseLink)
+        }
     )
 }
 
 @Composable
-fun LicenseInfoRow(
+fun LargeInfoButton(
     modifier: Modifier = Modifier,
     name: String? = null,
     description: String? = null,
-    url: String,
     icon: ImageVector = Icons.AutoMirrored.Default.LibraryBooks,
     isFirstItem: Boolean = false,
     isLastItem: Boolean = false,
-    openUrl: (String) -> Unit
+    colors: SelectableItemColors = ToolSelectableItemColors(),
+    onClick: () -> Unit
 ) {
     val shape = RoundedCornerShape(
         topStart = if (isFirstItem) Size16 else Size4,
@@ -1229,9 +1227,9 @@ fun LicenseInfoRow(
     )
     RoundedContainer(
         modifier = modifier,
-        color = MaterialTheme.colorScheme.surfaceContainerHigh,
+        color = colors.getSelectedContainerColor(),
         onClick = {
-            openUrl(url)
+            onClick()
         },
         shape = shape
     ) {
@@ -1248,7 +1246,7 @@ fun LicenseInfoRow(
                         .wrapContentSize()
                         .padding(Size16)
                         .clip(EquallyRounded.small),
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = colors.getSelectedContentColor()
                 ) {
                     Icon(
                         modifier = Modifier
@@ -1256,7 +1254,7 @@ fun LicenseInfoRow(
                             .size(Size24),
                         imageVector = icon,
                         contentDescription = "icon",
-                        tint = MaterialTheme.colorScheme.surfaceContainer
+                        tint = colors.getSelectedContainerColor()
                     )
                 }
                 Column(
@@ -1266,7 +1264,7 @@ fun LicenseInfoRow(
                 ) {
                     name?.let {
                         RoundedContainer(
-                            color = MaterialTheme.colorScheme.onSurface,
+                            color = colors.getSelectedContentColor(),
                             shape = EquallyRounded.small
                         ) {
                             Text(
@@ -1274,7 +1272,7 @@ fun LicenseInfoRow(
                                     .padding(Size4),
                                 text = name,
                                 style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.surface
+                                color = colors.getSelectedContainerColor()
                             )
                         }
                     }
@@ -1283,7 +1281,7 @@ fun LicenseInfoRow(
                             text = description,
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Normal,
-                            color = MaterialTheme.colorScheme.onSurface
+                            color = colors.getSelectedContentColor()
                         )
                     }
                 }
