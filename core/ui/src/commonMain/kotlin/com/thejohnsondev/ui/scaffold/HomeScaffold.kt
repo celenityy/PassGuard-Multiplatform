@@ -259,8 +259,7 @@ private fun ExpandedNavigationBar(
         PermanentDrawerSheet(
             modifier = Modifier.width(DrawerWidth)
                 .fillMaxHeight(),
-            drawerContainerColor = MaterialTheme.colorScheme.surfaceDim,
-            drawerShape = RoundedCornerShape(topEnd = SizeDefault, bottomEnd = Size32),
+            drawerContainerColor = MaterialTheme.colorScheme.surfaceDim
         ) {
             Column(
                 modifier = Modifier
