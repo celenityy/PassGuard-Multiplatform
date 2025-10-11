@@ -12,15 +12,14 @@ import androidx.compose.ui.Modifier
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.analytics.AnalyticsPlatform
 import com.thejohnsondev.analytics.posthog.PosthogAnalyticsConfig
+import com.thejohnsondev.common.model.settings.DarkThemeConfig
+import com.thejohnsondev.common.model.settings.SettingsConfig
 import com.thejohnsondev.common.navigation.Routes
 import com.thejohnsondev.common.utils.BuildKonfigProvider
 import com.thejohnsondev.common.utils.Logger
 import com.thejohnsondev.domain.model.AnalyticsProps
-import com.thejohnsondev.common.model.settings.DarkThemeConfig
-import com.thejohnsondev.common.model.settings.SettingsConfig
 import com.thejohnsondev.ui.designsystem.DeviceThemeConfig
 import com.thejohnsondev.ui.designsystem.colorscheme.VaultDefaultTheme
-import org.koin.compose.KoinContext
 import org.koin.mp.KoinPlatform
 import org.thejohnsondev.vault.navigation.AuthNavigation
 
@@ -43,13 +42,11 @@ fun Root(
         deviceThemeConfig = deviceThemeConfig,
         customTheme = settingsConfig.customTheme
     ) {
-        KoinContext {
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = MaterialTheme.colorScheme.background
-            ) {
-                AuthNavigation(windowSizeClass.widthSizeClass, firstScreenRoute)
-            }
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            AuthNavigation(windowSizeClass.widthSizeClass, firstScreenRoute)
         }
     }
 }
