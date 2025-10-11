@@ -1,2 +1,5 @@
 Changes:
-- Added About section
+Fixed bugs in android 10:
+- Fixed issues with system bar paddings
+- Fixed issues with blur effect
+Fixed dots indicator visibility on light themes
