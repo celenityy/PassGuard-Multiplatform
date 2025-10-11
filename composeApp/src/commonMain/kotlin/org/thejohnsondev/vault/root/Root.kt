@@ -26,6 +26,7 @@ import org.thejohnsondev.vault.navigation.AuthNavigation
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
 fun Root(
+    modifier: Modifier = Modifier,
     deviceThemeConfig: DeviceThemeConfig,
     firstScreenRoute: Routes,
     settingsConfig: SettingsConfig,
@@ -43,7 +44,8 @@ fun Root(
         customTheme = settingsConfig.customTheme
     ) {
         Surface(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier
+                .fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
             AuthNavigation(windowSizeClass.widthSizeClass, firstScreenRoute)
