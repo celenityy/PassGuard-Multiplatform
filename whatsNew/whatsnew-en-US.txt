@@ -1,5 +1,2 @@
 Changes:
-Fixed bugs in android 10:
-- Fixed issues with system bar paddings
-- Fixed issues with blur effect
-Fixed dots indicator visibility on light themes
+Fixed issues with system bar colors on android 10 and 11
