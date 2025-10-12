@@ -1,6 +1,9 @@
 package org.thejohnsondev.vault
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.view.Window
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -63,11 +66,6 @@ class MainActivity : FragmentActivity() {
         splashScreen.setKeepOnScreenCondition {
             firstScreenRoute.value == null || settingsConfig.value == null
         }
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
 
         setContent {
             safeLet(
@@ -97,10 +95,33 @@ class MainActivity : FragmentActivity() {
     ) {
         if (!window.decorView.isInEditMode) {
             val view = LocalView.current
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
-                !shouldUseDarkTheme(settingsConfig)
-            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars =
-                !shouldUseDarkTheme(settingsConfig)
+            val isLightTheme = !shouldUseDarkTheme(settingsConfig)
+            WindowCompat.getInsetsController(window, view).apply {
+                isAppearanceLightStatusBars = isLightTheme
+                isAppearanceLightNavigationBars = isLightTheme
+            }
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+            setSystemBarsAppearanceForAndroid29And30(window, isLightTheme)
+            setWindowFlagsForAndroid31AndAbove(window)
+        }
+    }
+
+    private fun setSystemBarsAppearanceForAndroid29And30(window: Window, isLightTheme: Boolean) {
+        if (Build.VERSION.SDK_INT in Build.VERSION_CODES.Q..Build.VERSION_CODES.R) {
+            @Suppress("DEPRECATION")
+            run {
+                window.statusBarColor = if (isLightTheme) Color.WHITE else Color.BLACK
+                window.navigationBarColor = if (isLightTheme) Color.WHITE else Color.BLACK
+            }
+        }
+    }
+
+    private fun setWindowFlagsForAndroid31AndAbove(window: Window) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
         }
     }
 
