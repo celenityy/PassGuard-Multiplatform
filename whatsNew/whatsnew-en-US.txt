@@ -1,2 +1,2 @@
 Changes:
-Fixed issues with system bar colors on android 10 and 11
+Fixed issues with csv file uploading for export/import.
