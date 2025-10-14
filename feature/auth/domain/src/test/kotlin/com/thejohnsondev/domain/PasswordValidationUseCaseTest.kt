@@ -1,7 +1,7 @@
 package com.thejohnsondev.domain
 
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.validation.PasswordValidationState
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.validation.PasswordValidationState
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

@@ -1,7 +1,7 @@
 package com.thejohnsondev.domain.model
 
-import com.thejohnsondev.model.settings.DarkThemeConfig
-import com.thejohnsondev.model.vault.VaultType
+import com.thejohnsondev.common.model.settings.DarkThemeConfig
+import com.thejohnsondev.common.model.vault.VaultType
 
 data class AnalyticsProps(
     val installID: String?,

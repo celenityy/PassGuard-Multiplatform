@@ -50,10 +50,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.common.empty
-import com.thejohnsondev.model.OneTimeEvent
-import com.thejohnsondev.model.ScreenState
-import com.thejohnsondev.model.validation.EmailValidationState
-import com.thejohnsondev.model.validation.PasswordValidationState
+import com.thejohnsondev.common.model.OneTimeEvent
+import com.thejohnsondev.common.model.ScreenState
+import com.thejohnsondev.common.model.validation.EmailValidationState
+import com.thejohnsondev.common.model.validation.PasswordValidationState
 import com.thejohnsondev.ui.components.button.BackArrowButton
 import com.thejohnsondev.ui.components.ErrorSnackbar
 import com.thejohnsondev.ui.components.animation.GlowPulsingBackground

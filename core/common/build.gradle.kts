@@ -32,7 +32,6 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":core:model"))
 
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.lifecycle.viewmodel)
@@ -164,17 +163,17 @@ buildkonfig {
         buildConfigField(
             FieldSpec.Type.STRING,
             "CONTACT_EMAIL",
-            appConfigProperties["config.contact_email"]?.toString() ?: ""
+            appConfigProperties["config.contact_email"].toString()
         )
         buildConfigField(
             FieldSpec.Type.STRING,
             "LOGO_PROVIDER_NAME",
-            appConfigProperties["config.logo_provider_name"]?.toString() ?: ""
+            appConfigProperties["config.logo_provider_name"].toString()
         )
         buildConfigField(
             FieldSpec.Type.STRING,
             "LOGO_PROVIDER_URL",
-            appConfigProperties["config.logo_provider_url"]?.toString() ?: ""
+            appConfigProperties["config.logo_provider_url"].toString()
         )
     }
 }

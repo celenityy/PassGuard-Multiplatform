@@ -1,7 +1,7 @@
 package com.thejohnsondev.domain
 
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.validation.EmailValidationState
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.validation.EmailValidationState
 
 class EmailValidateUseCase {
 

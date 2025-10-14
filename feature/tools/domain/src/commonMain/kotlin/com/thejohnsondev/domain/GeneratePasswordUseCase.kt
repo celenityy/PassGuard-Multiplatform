@@ -1,8 +1,8 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.domain.repo.PasswordGenerationRepository
-import com.thejohnsondev.model.tools.PasswordGeneratedResult
-import com.thejohnsondev.model.tools.PasswordGeneratorConfig
+import com.thejohnsondev.common.model.tools.PasswordGeneratedResult
+import com.thejohnsondev.common.model.tools.PasswordGeneratorConfig
 
 class GeneratePasswordUseCase(
     private val passwordGenerationRepository: PasswordGenerationRepository

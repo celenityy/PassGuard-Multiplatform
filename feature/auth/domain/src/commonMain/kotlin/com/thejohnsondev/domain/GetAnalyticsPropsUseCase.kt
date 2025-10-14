@@ -4,7 +4,7 @@ import com.thejohnsondev.common.getPlatform
 import com.thejohnsondev.common.utils.BuildKonfigProvider
 import com.thejohnsondev.domain.model.AnalyticsProps
 import com.thejohnsondev.domain.repo.AuthRepository
-import com.thejohnsondev.model.vault.VaultType
+import com.thejohnsondev.common.model.vault.VaultType
 
 class GetAnalyticsPropsUseCase(
     private val authRepository: AuthRepository

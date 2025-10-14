@@ -1,8 +1,8 @@
 package com.thejohnsondev.domain.repo
 
 import arrow.core.Either
-import com.thejohnsondev.model.Error
-import com.thejohnsondev.model.auth.logo.FindLogoResponse
+import com.thejohnsondev.common.model.Error
+import com.thejohnsondev.common.model.auth.logo.FindLogoResponse
 
 interface VaultRepository {
     suspend fun updateAppliedItemTypeFilters(typeFilters: List<String>)

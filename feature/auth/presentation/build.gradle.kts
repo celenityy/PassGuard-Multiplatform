@@ -38,7 +38,6 @@ kotlin {
         }
         commonMain.dependencies {
             api(project(":core:analytics"))
-            api(project(":core:model"))
             api(project(":core:common"))
             api(project(":core:ui"))
             api(project(":core:localization"))

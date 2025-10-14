@@ -91,7 +91,8 @@
     <string name="password_generator_medium">Слабкий</string>
     <string name="select">Обрати</string>
 
-    <string name="password_health">Здоров\'я сховища</string>
+    <string name="password_health">Здоров'я сховища</string>
+    <string name="password_health_score">Оцінка</string>
     <string name="password_health_old_title">Старі паролі</string>
     <string name="password_health_old_title_positive">Старих паролів немає</string>
     <string name="password_health_old_description">Ці паролі не оновлювалися більше ніж %1$s днів тому</string>

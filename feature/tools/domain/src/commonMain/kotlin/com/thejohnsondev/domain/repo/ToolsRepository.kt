@@ -1,6 +1,6 @@
 package com.thejohnsondev.domain.repo
 
-import com.thejohnsondev.model.tools.PasswordGeneratorConfig
+import com.thejohnsondev.common.model.tools.PasswordGeneratorConfig
 
 interface ToolsRepository {
     suspend fun updatePasswordGeneratorConfig(

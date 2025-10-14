@@ -1,8 +1,8 @@
 package com.thejohnsondev.domain.repo
 
-import com.thejohnsondev.model.tools.PasswordGeneratedResult
-import com.thejohnsondev.model.tools.PasswordGenerationType
-import com.thejohnsondev.model.tools.PasswordStrength
+import com.thejohnsondev.common.model.tools.PasswordGeneratedResult
+import com.thejohnsondev.common.model.tools.PasswordGenerationType
+import com.thejohnsondev.common.model.tools.PasswordStrength
 
 interface PasswordGenerationRepository {
     fun generatePassword(

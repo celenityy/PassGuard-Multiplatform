@@ -2,7 +2,7 @@ package com.thejohnsondev.domain.vaulthealth
 
 import com.thejohnsondev.common.utils.toAgeInDays
 import com.thejohnsondev.domain.repo.PasswordGenerationRepository
-import com.thejohnsondev.model.vault.PasswordDto
+import com.thejohnsondev.common.model.vault.PasswordDto
 
 class VaultHealthUtils(
     private val passwordGenerationRepository: PasswordGenerationRepository,

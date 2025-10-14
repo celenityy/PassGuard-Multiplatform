@@ -6,7 +6,7 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.presentation.vault.VaultScreenContent
 import com.thejohnsondev.presentation.vault.VaultViewModel
 import com.thejohnsondev.ui.designsystem.colorscheme.VaultDefaultTheme

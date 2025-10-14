@@ -1,7 +1,7 @@
 package com.thejohnsondev.database.mappers
 
-import com.thejohnsondev.model.vault.AdditionalFieldDto
-import com.thejohnsondev.model.vault.PasswordDto
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.vault.PasswordDto
 import org.thejohnsondev.vault.database.PasswordAdditionalField
 import org.thejohnsondev.vault.database.PasswordEntity
 

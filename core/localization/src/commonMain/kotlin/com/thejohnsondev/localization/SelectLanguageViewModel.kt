@@ -3,7 +3,7 @@ package com.thejohnsondev.localization
 import kotlinx.coroutines.flow.stateIn
 import androidx.lifecycle.viewModelScope
 import com.thejohnsondev.common.base.BaseViewModel
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.ScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine

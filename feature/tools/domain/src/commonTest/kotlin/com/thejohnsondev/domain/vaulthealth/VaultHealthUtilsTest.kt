@@ -3,10 +3,10 @@ package com.thejohnsondev.domain.vaulthealth
 import com.thejohnsondev.common.utils.getCurrentTimeStamp
 import kotlin.test.*
 import com.thejohnsondev.domain.repo.PasswordGenerationRepository
-import com.thejohnsondev.model.tools.PasswordGeneratedResult
-import com.thejohnsondev.model.tools.PasswordGenerationType
-import com.thejohnsondev.model.tools.PasswordStrength
-import com.thejohnsondev.model.vault.PasswordDto
+import com.thejohnsondev.common.model.tools.PasswordGeneratedResult
+import com.thejohnsondev.common.model.tools.PasswordGenerationType
+import com.thejohnsondev.common.model.tools.PasswordStrength
+import com.thejohnsondev.common.model.vault.PasswordDto
 
 class FakePasswordGenerationRepository : PasswordGenerationRepository {
     override fun generatePassword(

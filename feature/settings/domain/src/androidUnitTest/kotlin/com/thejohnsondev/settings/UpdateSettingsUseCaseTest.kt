@@ -2,10 +2,10 @@ package com.thejohnsondev.settings
 
 import com.thejohnsondev.domain.UpdateSettingsUseCase
 import com.thejohnsondev.domain.repo.SettingsRepository
-import com.thejohnsondev.model.settings.DarkThemeConfig
-import com.thejohnsondev.model.settings.GeneralSettings
-import com.thejohnsondev.model.settings.PrivacySettings
-import com.thejohnsondev.model.settings.ThemeBrand
+import com.thejohnsondev.common.model.settings.DarkThemeConfig
+import com.thejohnsondev.common.model.settings.GeneralSettings
+import com.thejohnsondev.common.model.settings.PrivacySettings
+import com.thejohnsondev.common.model.settings.ThemeBrand
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking

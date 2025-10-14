@@ -1,10 +1,10 @@
 package com.thejohnsondev.data
 
 import com.thejohnsondev.domain.repo.PasswordGenerationRepository
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.tools.PasswordGeneratedResult
-import com.thejohnsondev.model.tools.PasswordGenerationType
-import com.thejohnsondev.model.tools.PasswordStrength
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.tools.PasswordGeneratedResult
+import com.thejohnsondev.common.model.tools.PasswordGenerationType
+import com.thejohnsondev.common.model.tools.PasswordStrength
 import kotlin.random.Random
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid

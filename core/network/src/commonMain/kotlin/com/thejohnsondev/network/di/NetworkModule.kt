@@ -2,7 +2,7 @@ package com.thejohnsondev.network.di
 
 import com.thejohnsondev.common.Platform
 import com.thejohnsondev.common.getPlatform
-import com.thejohnsondev.model.NoInternetConnectionException
+import com.thejohnsondev.common.model.NoInternetConnectionException
 import com.thejohnsondev.network.HttpClientProvider
 import dev.tmapps.konnection.Konnection
 import io.ktor.client.plugins.HttpSend

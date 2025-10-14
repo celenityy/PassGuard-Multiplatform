@@ -1,2 +1,2 @@
 Changes:
-- Added About section
+Fixed issues with csv file uploading for export/import.

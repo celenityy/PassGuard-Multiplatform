@@ -3,10 +3,9 @@ package com.thejohnsondev.presentation.welcome
 import androidx.lifecycle.viewModelScope
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.common.base.BaseViewModel
-import com.thejohnsondev.domain.CheckInstallIDUseCase
 import com.thejohnsondev.localization.Language
 import com.thejohnsondev.localization.LocalizationUtils
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.ScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine

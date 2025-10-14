@@ -1,7 +1,7 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.domain.repo.SettingsRepository
-import com.thejohnsondev.model.settings.SettingsConfig
+import com.thejohnsondev.common.model.settings.SettingsConfig
 import kotlinx.coroutines.flow.Flow
 
 class GetSettingsFlowUseCase(

@@ -1,9 +1,9 @@
 package com.thejohnsondev.network.vault
 
 import arrow.core.Either
-import com.thejohnsondev.model.Error
-import com.thejohnsondev.model.auth.dotnet.DotNetAuthRequestBody
-import com.thejohnsondev.model.auth.dotnet.DotNetAuthResponse
+import com.thejohnsondev.common.model.Error
+import com.thejohnsondev.common.model.auth.dotnet.DotNetAuthRequestBody
+import com.thejohnsondev.common.model.auth.dotnet.DotNetAuthResponse
 import com.thejohnsondev.network.callWithMapping
 import com.thejohnsondev.network.defaultRequestConfig
 import com.thejohnsondev.network.defaultUrlConfig

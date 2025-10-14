@@ -60,7 +60,6 @@ kotlin {
             api(project(":core:database"))
             api(project(":core:datastore"))
             api(project(":core:localization"))
-            api(project(":core:model"))
             api(project(":core:network"))
             api(project(":core:platform"))
             api(project(":core:sync"))
@@ -77,7 +76,6 @@ kotlin {
             api(project(":feature:settings:data"))
             api(project(":feature:settings:domain"))
             api(project(":feature:settings:presentation"))
-            api(project(":feature:autofill"))
 
             // Compose
             implementation(compose.runtime)

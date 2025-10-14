@@ -35,8 +35,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.thejohnsondev.domain.export.CSVImportExportUtils
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.presentation.importv.ImportPasswordsViewModel.ImportSuccessfulEvent
 import com.thejohnsondev.ui.components.ExpandableSectionItem
 import com.thejohnsondev.ui.components.button.RoundedButton

@@ -1,12 +1,12 @@
 package com.thejohnsondev.domain.repo
 
 import arrow.core.Either
-import com.thejohnsondev.model.Error
-import com.thejohnsondev.model.auth.firebase.FBAuthRequestBody
-import com.thejohnsondev.model.auth.firebase.FBAuthSignInResponse
-import com.thejohnsondev.model.auth.firebase.FBAuthSignUpResponse
-import com.thejohnsondev.model.auth.firebase.FBRefreshTokenResponseBody
-import com.thejohnsondev.model.settings.DarkThemeConfig
+import com.thejohnsondev.common.model.Error
+import com.thejohnsondev.common.model.auth.firebase.FBAuthRequestBody
+import com.thejohnsondev.common.model.auth.firebase.FBAuthSignInResponse
+import com.thejohnsondev.common.model.auth.firebase.FBAuthSignUpResponse
+import com.thejohnsondev.common.model.auth.firebase.FBRefreshTokenResponseBody
+import com.thejohnsondev.common.model.settings.DarkThemeConfig
 import com.thejosnsondev.biometric.BiometricAuthResult
 import com.thejosnsondev.biometric.BiometricAvailability
 import kotlinx.coroutines.flow.Flow

@@ -1,9 +1,9 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.common.utils.getCurrentTimeStamp
-import com.thejohnsondev.model.vault.AdditionalFieldDto
-import com.thejohnsondev.model.vault.PasswordDto
-import com.thejohnsondev.model.vault.SyncStatus
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.vault.PasswordDto
+import com.thejohnsondev.common.model.vault.SyncStatus
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 

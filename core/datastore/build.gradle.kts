@@ -33,7 +33,6 @@ kotlin {
         }
         commonMain.dependencies {
             api(project(":core:common"))
-            api(project(":core:model"))
             api(project(":core:platform"))
 
             api(libs.datastore)

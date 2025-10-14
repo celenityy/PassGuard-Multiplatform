@@ -5,8 +5,8 @@ import com.thejohnsondev.common.base.BaseViewModel
 import com.thejohnsondev.common.utils.Logger
 import com.thejohnsondev.domain.GetBiometricAvailabilityUseCase
 import com.thejohnsondev.domain.ShowBiometricPromptUseCase
-import com.thejohnsondev.model.OneTimeEvent
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.OneTimeEvent
+import com.thejohnsondev.common.model.ScreenState
 import com.thejosnsondev.biometric.BiometricAuthResult
 import com.thejosnsondev.biometric.BiometricAvailability
 import com.thejosnsondev.biometric.BiometricType
