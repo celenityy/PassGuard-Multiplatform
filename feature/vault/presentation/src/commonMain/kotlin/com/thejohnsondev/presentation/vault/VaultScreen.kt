@@ -47,8 +47,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.common.PASSWORD_IDLE_ITEM_HEIGHT
-import com.thejohnsondev.model.OneTimeEvent
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.OneTimeEvent
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.presentation.additem.AddVaultItemScreen
 import com.thejohnsondev.ui.components.animation.ShimmerEffect
 import com.thejohnsondev.ui.components.button.ToggleButton
@@ -89,7 +89,6 @@ import vaultmultiplatform.core.ui.generated.resources.delete_password
 import vaultmultiplatform.core.ui.generated.resources.delete_password_message
 import vaultmultiplatform.core.ui.generated.resources.empty_vault
 import vaultmultiplatform.core.ui.generated.resources.empty_vault_get_started
-import vaultmultiplatform.core.ui.generated.resources.filters
 import vaultmultiplatform.core.ui.generated.resources.nothing_found
 import vaultmultiplatform.core.ui.generated.resources.sort_by
 import vaultmultiplatform.core.ui.generated.resources.vault

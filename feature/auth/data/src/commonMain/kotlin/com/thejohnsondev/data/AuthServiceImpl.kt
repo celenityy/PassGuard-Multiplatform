@@ -5,11 +5,11 @@ import com.thejohnsondev.domain.repo.AuthService
 import com.thejohnsondev.domain.repo.AuthRepository
 import com.thejohnsondev.domain.repo.EncryptionRepository
 import com.thejohnsondev.domain.repo.GenerateKeyRepository
-import com.thejohnsondev.model.Error
-import com.thejohnsondev.model.auth.firebase.FBAuthRequestBody
-import com.thejohnsondev.model.auth.firebase.FBAuthSignInResponse
-import com.thejohnsondev.model.auth.firebase.FBAuthSignUpResponse
-import com.thejohnsondev.model.auth.firebase.FBRefreshTokenResponseBody
+import com.thejohnsondev.common.model.Error
+import com.thejohnsondev.common.model.auth.firebase.FBAuthRequestBody
+import com.thejohnsondev.common.model.auth.firebase.FBAuthSignInResponse
+import com.thejohnsondev.common.model.auth.firebase.FBAuthSignUpResponse
+import com.thejohnsondev.common.model.auth.firebase.FBRefreshTokenResponseBody
 import kotlinx.coroutines.flow.Flow
 
 class AuthServiceImpl(

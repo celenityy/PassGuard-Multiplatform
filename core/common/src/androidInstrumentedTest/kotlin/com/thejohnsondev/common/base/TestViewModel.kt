@@ -1,7 +1,7 @@
 package com.thejohnsondev.common.base
 
-import com.thejohnsondev.model.Error
-import com.thejohnsondev.model.OneTimeEvent
+import com.thejohnsondev.common.model.Error
+import com.thejohnsondev.common.model.OneTimeEvent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 

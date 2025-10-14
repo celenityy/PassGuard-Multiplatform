@@ -1,7 +1,7 @@
 package com.thejohnsondev.domain.export
 
 import com.thejohnsondev.domain.CheckPassDuplicatesUseCase
-import com.thejohnsondev.model.vault.PasswordDto
+import com.thejohnsondev.common.model.vault.PasswordDto
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

@@ -1,8 +1,7 @@
 package com.thejohnsondev.common.base
 
 import androidx.lifecycle.viewModelScope
-import com.thejohnsondev.model.LoadingState
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.ScreenState
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first

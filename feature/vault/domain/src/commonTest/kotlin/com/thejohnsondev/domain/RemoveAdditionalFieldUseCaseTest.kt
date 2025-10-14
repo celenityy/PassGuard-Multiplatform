@@ -1,6 +1,6 @@
 package com.thejohnsondev.domain
 
-import com.thejohnsondev.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

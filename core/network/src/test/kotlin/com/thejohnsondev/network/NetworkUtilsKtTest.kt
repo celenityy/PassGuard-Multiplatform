@@ -1,8 +1,8 @@
 package com.thejohnsondev.network
 
-import com.thejohnsondev.model.NetworkError
-import com.thejohnsondev.model.NoInternetConnectionException
-import com.thejohnsondev.model.UnknownError
+import com.thejohnsondev.common.model.NetworkError
+import com.thejohnsondev.common.model.NoInternetConnectionException
+import com.thejohnsondev.common.model.UnknownError
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode

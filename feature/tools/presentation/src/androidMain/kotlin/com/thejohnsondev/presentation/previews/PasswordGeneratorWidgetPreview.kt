@@ -7,8 +7,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.tools.PasswordGeneratedResult
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.tools.PasswordGeneratedResult
 import com.thejohnsondev.presentation.passwordgenerator.PasswordGeneratorViewModel
 import com.thejohnsondev.presentation.passwordgenerator.PasswordGeneratorWidgetContent
 import com.thejohnsondev.ui.designsystem.colorscheme.VaultDefaultTheme

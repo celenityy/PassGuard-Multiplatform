@@ -10,7 +10,7 @@ import com.thejohnsondev.domain.PasswordsMapToUiModelsUseCase
 import com.thejohnsondev.domain.service.PasswordsService
 import com.thejohnsondev.domain.ToggleOpenedItemUseCase
 import com.thejohnsondev.domain.vaulthealth.VaultHealthReport
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.ui.components.vault.passworditem.PasswordUIModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -74,6 +74,7 @@ fun NavGraphBuilder.welcomeScreen(
 }
 
 fun NavGraphBuilder.onboardingScreen(
+    windowWidthSizeClass: WindowWidthSizeClass,
     goToSelectVaultType: () -> Unit,
     goToHome: () -> Unit,
     goBack: () -> Unit
@@ -81,6 +82,7 @@ fun NavGraphBuilder.onboardingScreen(
     composable<Routes.OnboardingRoute> {
         val viewModel = koinViewModel<OnboardingViewModel>()
         OnboardingScreen(
+            windowWidthSizeClass = windowWidthSizeClass,
             viewModel = viewModel,
             goToSelectVaultType = goToSelectVaultType,
             goToHome = goToHome,

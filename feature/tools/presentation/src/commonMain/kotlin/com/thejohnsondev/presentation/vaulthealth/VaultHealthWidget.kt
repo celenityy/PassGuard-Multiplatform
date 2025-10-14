@@ -51,6 +51,7 @@ import vaultmultiplatform.core.ui.generated.resources.password_health_old_title_
 import vaultmultiplatform.core.ui.generated.resources.password_health_reused_description
 import vaultmultiplatform.core.ui.generated.resources.password_health_reused_title
 import vaultmultiplatform.core.ui.generated.resources.password_health_reused_title_positive
+import vaultmultiplatform.core.ui.generated.resources.password_health_score
 import vaultmultiplatform.core.ui.generated.resources.password_health_stats_leaked
 import vaultmultiplatform.core.ui.generated.resources.password_health_stats_reused
 import vaultmultiplatform.core.ui.generated.resources.password_health_stats_total
@@ -98,7 +99,7 @@ fun VaultHealthWidgetContent(
                 modifier = Modifier
                     .padding(start = Size8),
                 progress = state.report?.overallScore ?: 0f,
-                text = "Score"
+                text = stringResource(ResString.password_health_score)
             )
             StatsWidget(
                 modifier = Modifier

@@ -1,7 +1,7 @@
 package com.thejohnsondev.domain.service
 
 import com.thejohnsondev.domain.repo.PasswordsRepository
-import com.thejohnsondev.model.vault.PasswordDto
+import com.thejohnsondev.common.model.vault.PasswordDto
 import com.thejohnsondev.sync.SyncManager
 import kotlinx.coroutines.flow.Flow
 

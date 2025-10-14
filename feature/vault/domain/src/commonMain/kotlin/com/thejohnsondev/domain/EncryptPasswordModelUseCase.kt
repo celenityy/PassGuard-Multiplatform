@@ -1,8 +1,8 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.domain.repo.EncryptionRepository
-import com.thejohnsondev.model.vault.AdditionalFieldDto
-import com.thejohnsondev.model.vault.PasswordDto
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.vault.PasswordDto
 
 class EncryptPasswordModelUseCase(
     private val encryptionRepository: EncryptionRepository

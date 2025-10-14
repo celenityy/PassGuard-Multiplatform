@@ -10,9 +10,9 @@ import com.thejohnsondev.domain.GenerateExportCSVUseCase
 import com.thejohnsondev.domain.PasswordsMapToUiModelsUseCase
 import com.thejohnsondev.domain.service.PasswordsService
 import com.thejohnsondev.domain.export.CSVGenerationResult
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.OneTimeEvent
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.OneTimeEvent
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.platform.filemanager.FileActionStatus
 import com.thejohnsondev.ui.components.vault.passworditem.PasswordUIModel
 import kotlinx.coroutines.Dispatchers

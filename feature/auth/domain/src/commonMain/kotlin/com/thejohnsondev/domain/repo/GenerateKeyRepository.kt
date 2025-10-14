@@ -1,7 +1,7 @@
 package com.thejohnsondev.domain.repo
 
 import arrow.core.Either
-import com.thejohnsondev.model.Error
+import com.thejohnsondev.common.model.Error
 import kotlinx.coroutines.flow.Flow
 
 interface GenerateKeyRepository {

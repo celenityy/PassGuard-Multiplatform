@@ -2,7 +2,7 @@ package com.thejohnsondev.database
 
 import app.cash.sqldelight.coroutines.asFlow
 import com.thejohnsondev.database.mappers.mapToDto
-import com.thejohnsondev.model.vault.PasswordDto
+import com.thejohnsondev.common.model.vault.PasswordDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.thejohnsondev.vault.database.VaultDatabase

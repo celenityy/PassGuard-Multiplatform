@@ -6,7 +6,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.thejohnsondev.domain.export.FailedPasswordParsingEntry
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.presentation.importv.ImportPasswordsScreenContent
 import com.thejohnsondev.presentation.importv.ImportPasswordsViewModel
 import com.thejohnsondev.ui.components.vault.passworditem.PasswordUIModel

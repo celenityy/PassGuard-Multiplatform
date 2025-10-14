@@ -5,7 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import com.thejohnsondev.model.settings.ThemeBrand
+import com.thejohnsondev.common.model.settings.ThemeBrand
 import com.thejohnsondev.ui.designsystem.DeviceThemeConfig
 import com.thejohnsondev.ui.designsystem.getTypography
 import com.thejohnsondev.ui.utils.ResDrawable

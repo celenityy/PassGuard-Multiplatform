@@ -1,8 +1,8 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.common.PASS_MIN_SIZE
-import com.thejohnsondev.model.DisplayableMessageValue
-import com.thejohnsondev.model.validation.PasswordValidationState
+import com.thejohnsondev.common.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.validation.PasswordValidationState
 
 class PasswordValidationUseCase {
 

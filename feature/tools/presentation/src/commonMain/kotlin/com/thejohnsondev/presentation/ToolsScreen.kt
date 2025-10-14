@@ -33,7 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.thejohnsondev.analytics.Analytics
 import com.thejohnsondev.common.EXPAND_ANIM_DURATION
-import com.thejohnsondev.model.DisplayableMessageValue
+import com.thejohnsondev.common.model.DisplayableMessageValue
 import com.thejohnsondev.presentation.passwordgenerator.PasswordGeneratorWidget
 import com.thejohnsondev.presentation.vaulthealth.VaultHealthWidget
 import com.thejohnsondev.ui.components.ExpandableSectionItem

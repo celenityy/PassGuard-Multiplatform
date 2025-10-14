@@ -2,7 +2,7 @@ package com.thejohnsondev.domain
 
 import com.thejohnsondev.common.empty
 import com.thejohnsondev.common.utils.getCurrentTimeStamp
-import com.thejohnsondev.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
 
 class AddAdditionalFieldUseCase {
     operator fun invoke(currentList: List<AdditionalFieldDto>): List<AdditionalFieldDto> {

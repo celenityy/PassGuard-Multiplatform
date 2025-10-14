@@ -1,6 +1,6 @@
 package com.thejohnsondev.domain.repo
 
-import com.thejohnsondev.model.vault.PasswordDto
+import com.thejohnsondev.common.model.vault.PasswordDto
 import kotlinx.coroutines.flow.Flow
 
 interface PasswordsRepository {

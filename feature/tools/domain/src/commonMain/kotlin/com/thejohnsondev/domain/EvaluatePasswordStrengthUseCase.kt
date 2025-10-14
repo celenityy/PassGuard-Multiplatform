@@ -1,7 +1,7 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.domain.repo.PasswordGenerationRepository
-import com.thejohnsondev.model.tools.PasswordStrength
+import com.thejohnsondev.common.model.tools.PasswordStrength
 
 class EvaluatePasswordStrengthUseCase(
     private val passwordGenerationRepository: PasswordGenerationRepository

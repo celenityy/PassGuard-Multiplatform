@@ -30,7 +30,6 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":core:model"))
             api(project(":core:common"))
             api(project(":core:platform"))
             api(project(":core:biometric"))

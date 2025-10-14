@@ -1,8 +1,8 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.common.utils.getCurrentTimeStamp
-import com.thejohnsondev.model.vault.AdditionalFieldDto
-import com.thejohnsondev.model.vault.SyncStatus
+import com.thejohnsondev.common.model.vault.AdditionalFieldDto
+import com.thejohnsondev.common.model.vault.SyncStatus
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

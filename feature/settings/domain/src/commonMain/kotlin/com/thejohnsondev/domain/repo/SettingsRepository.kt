@@ -1,10 +1,10 @@
 package com.thejohnsondev.domain.repo
 
-import com.thejohnsondev.model.settings.DarkThemeConfig
-import com.thejohnsondev.model.settings.GeneralSettings
-import com.thejohnsondev.model.settings.PrivacySettings
-import com.thejohnsondev.model.settings.SettingsConfig
-import com.thejohnsondev.model.settings.ThemeBrand
+import com.thejohnsondev.common.model.settings.DarkThemeConfig
+import com.thejohnsondev.common.model.settings.GeneralSettings
+import com.thejohnsondev.common.model.settings.PrivacySettings
+import com.thejohnsondev.common.model.settings.SettingsConfig
+import com.thejohnsondev.common.model.settings.ThemeBrand
 import com.thejosnsondev.biometric.BiometricAvailability
 import kotlinx.coroutines.flow.Flow
 

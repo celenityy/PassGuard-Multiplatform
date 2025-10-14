@@ -1,10 +1,10 @@
 package com.thejohnsondev.domain
 
 import com.thejohnsondev.domain.repo.SettingsRepository
-import com.thejohnsondev.model.settings.DarkThemeConfig
-import com.thejohnsondev.model.settings.GeneralSettings
-import com.thejohnsondev.model.settings.PrivacySettings
-import com.thejohnsondev.model.settings.ThemeBrand
+import com.thejohnsondev.common.model.settings.DarkThemeConfig
+import com.thejohnsondev.common.model.settings.GeneralSettings
+import com.thejohnsondev.common.model.settings.PrivacySettings
+import com.thejohnsondev.common.model.settings.ThemeBrand
 
 class UpdateSettingsUseCase(
     private val settingsRepository: SettingsRepository

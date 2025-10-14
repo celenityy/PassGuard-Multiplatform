@@ -3,7 +3,7 @@ package com.thejohnsondev.presentation.exportv
 import androidx.lifecycle.viewModelScope
 import com.thejohnsondev.common.base.BaseViewModel
 import com.thejohnsondev.domain.ToggleOpenedItemUseCase
-import com.thejohnsondev.model.ScreenState
+import com.thejohnsondev.common.model.ScreenState
 import com.thejohnsondev.ui.components.vault.passworditem.PasswordUIModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
